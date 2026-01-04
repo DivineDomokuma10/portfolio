@@ -7,7 +7,9 @@ import {
   ICardContext,
   useCardContext,
 } from "@/context/card-context";
-import { cn } from "@/lib/utils";
+import { capitalize, cn } from "@/lib/utils";
+import { TCardBtnVariant } from "@/types";
+import { Code, Link } from "lucide-react";
 
 type Props = HTMLAttributes<HTMLDivElement>;
 
@@ -22,7 +24,7 @@ export const Card = ({
     <CardContextProvider value={cardData}>
       <div
         className={cn(
-          "group h-fit border-2 border-secondary inline-flex flex-col transition-all duration-200 hover:border-primary",
+          "group h-fit border-2 border-secondary flex flex-col transition-all duration-200 hover:border-primary",
           className
         )}
       >
@@ -62,11 +64,38 @@ export const CardImage = ({ className }: Props) => {
           quality={100}
           alt="card-img"
           src={img}
-          className="w-full h-full absolute object-fill transition-all duration-200 hover:scale-110"
+          className="w-full h-full top-0 absolute object-fill transition-all duration-200 hover:scale-110"
         />
       ) : (
-        <></>
+        <>img url: {img}</>
       )}
     </div>
+  );
+};
+
+export const CardButton = ({
+  variant,
+  className,
+}: { variant: TCardBtnVariant } & Props) => {
+  const { links } = useCardContext();
+
+  const link = links?.[variant as keyof typeof links] || "/";
+
+  return (
+    <a
+      href={link}
+      target="_blank"
+      className={cn(
+        "py-2 px-3 flex items-center space-x-3 border text-xs text-white",
+        className,
+        {
+          "border-primary": variant === "live",
+          "border-secondary": variant === "github",
+        }
+      )}
+    >
+      <p>{capitalize(variant)}</p>
+      {variant === "live" ? <Link size={15} /> : <Code size={15} />}
+    </a>
   );
 };

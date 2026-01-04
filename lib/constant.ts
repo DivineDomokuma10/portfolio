@@ -29,3 +29,33 @@ export const skills: P<Record<keyof ISkillRecord, ICardContext>> = {
     ],
   },
 };
+
+export const projects: Array<ICardContext> = [
+  {
+    techs: ["Html", "CSS", "Javascript"],
+    img: "/Bg.jpeg",
+    links: { github: "github.com", live: "live.com" },
+    textInfo: {
+      title: "ChertNode",
+      desc: "Minecraft Server boosting",
+    },
+  },
+  {
+    techs: ["Html", "CSS", "Javascript"],
+    img: "/Bg.jpeg",
+    links: { github: "github.com", live: "live.com" },
+    textInfo: {
+      title: "ChertNode",
+      desc: "Minecraft Server boosting",
+    },
+  },
+  {
+    techs: ["React.js", "Tailwindcss", "Expess.js"],
+    img: "/Bg.jpeg",
+    links: { github: "github.com", live: "live.com" },
+    textInfo: {
+      title: "ProjectX",
+      desc: "Discord anti-craft analyzer",
+    },
+  },
+];

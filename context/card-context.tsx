@@ -8,6 +8,10 @@ export interface ICardContext {
     github: string;
     live: string;
   };
+  textInfo?: {
+    title: string;
+    desc: string;
+  };
 }
 
 interface ICardProvider {

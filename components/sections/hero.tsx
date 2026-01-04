@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const HeroSection = () => {
   return (
-    <section className="w-full min-h-[110dvh] flex flex-col space-y-10 justify-center p-5 md:min-h-[80dvh] md:items-center md:justify-between md:flex-row">
+    <section className="w-full flex flex-col space-y-10 justify-center p-5 md:min-h-[60dvh] md:items-center md:justify-between md:flex-row">
       <section className="w-full flex flex-col space-y-3 md:w-[45%]">
         <h1 className="text-3xl text-white font-bold leading-12">
           Hi, <span className="text-primary">Divine Domokuma here</span>. I am a{" "}

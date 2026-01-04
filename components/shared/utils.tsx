@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Activity, ReactNode, useState } from "react";
 
 import Nav, { SideBar } from "./nav";
+import { cn } from "@/lib/utils";
 
 interface SectionHeaderProps {
   title: string;
@@ -39,8 +40,8 @@ export const Logo = () => {
 
 export const SectionHeader = ({ title }: SectionHeaderProps) => {
   return (
-    <header className="w-full flex space-x-4 items-center">
-      <h1 className="font-medium text-white text-lg md:text-2xl">
+    <header className="flex-1 flex space-x-4 items-center">
+      <h1 className="font-medium text-white text-2xl md:text-3xl">
         <span className="text-primary">#</span>
         {title}
       </h1>
@@ -49,3 +50,13 @@ export const SectionHeader = ({ title }: SectionHeaderProps) => {
     </header>
   );
 };
+
+export function MasonryGrid({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return <div className={cn("w-full", className)}>{children}</div>;
+}
