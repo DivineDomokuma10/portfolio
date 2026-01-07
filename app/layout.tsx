@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="bg-background max-w-screen min-h-dvh antialiased">
+      <body className="bg-background grid-pattern max-w-screen min-h-dvh antialiased">
         <Wrapper>{children}</Wrapper>
       </body>
     </html>

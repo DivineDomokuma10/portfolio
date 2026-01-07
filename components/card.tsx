@@ -64,7 +64,7 @@ export const CardImage = ({ className }: Props) => {
           quality={100}
           alt="card-img"
           src={img}
-          className="w-full h-full top-0 absolute object-fill transition-all duration-200 hover:scale-110"
+          className="w-full h-full top-0 absolute object-fill transition-all duration-200 hover:-rotate-45 hover:scale-200"
         />
       ) : (
         <>img url: {img}</>

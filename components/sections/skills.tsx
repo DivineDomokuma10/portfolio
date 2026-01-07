@@ -34,7 +34,7 @@ const SkillSection = () => {
         </MasonryGrid>
       </section>
 
-      <section className="w-full flex items-center justify-center md:w-[40%]">
+      <section className="hidden w-full sm:flex items-center justify-center md:w-[40%]">
         <SkillIllustrator />
       </section>
     </section>

@@ -3,19 +3,23 @@ import { ArrowRight } from "lucide-react";
 import { projects } from "@/lib/constant";
 import { MasonryGrid, SectionHeader } from "../shared/utils";
 import { Card, CardButton, CardImage, CardTools } from "../card";
+import Link from "next/link";
 
 const Project = () => {
   return (
-    <section className="w-full flex flex-col space-y-10 justify-center p-5 ">
-      <div className="w-full flex items-center justify-between space-x-5">
-        <div className="md:w-8/12">
+    <section className="w-full flex flex-col space-y-7 justify-center p-5">
+      <div className="w-full flex items-center justify-between sm:space-x-5">
+        <div className="w-full md:w-1/2">
           <SectionHeader title="projects" />
         </div>
 
-        <p className=" text-sm text-white flex items-center space-x-2.5">
-          <span>See More</span>
+        <Link
+          href="/works"
+          className="hidden text-sm text-white items-center space-x-2.5 sm:flex hover:text-primary"
+        >
+          <span className="">See More</span>
           <ArrowRight />
-        </p>
+        </Link>
       </div>
 
       <MasonryGrid className="columns-1 md:columns-3">
@@ -46,6 +50,14 @@ const Project = () => {
           </Card>
         ))}
       </MasonryGrid>
+
+      <Link
+        href="/works"
+        className="w-fit py-2 px-3 flex items-center space-x-3 border text-xs border-primary text-white md:hidden"
+      >
+        <p>Read More</p>
+        <ArrowRight />
+      </Link>
     </section>
   );
 };

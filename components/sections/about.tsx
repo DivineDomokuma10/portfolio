@@ -1,9 +1,11 @@
 import Image from "next/image";
 import { SectionHeader } from "../shared/utils";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 const AboutSection = () => {
   return (
-    <section className="w-full flex flex-col space-y-10 justify-center p-5 md:items-center md:justify-between md:flex-row-reverse">
+    <section className="w-full flex flex-col grid-pattern space-y-10 justify-center p-5 md:items-center md:justify-between md:flex-row-reverse">
       <section className="w-full flex flex-col space-y-7 md:w-[45%]">
         <SectionHeader title="about-me" />
 
@@ -23,6 +25,15 @@ const AboutSection = () => {
             newest technologies and frameworks.
           </span>
         </p>
+
+        <Link
+          target="_blank"
+          href="/about-me"
+          className="w-fit py-2 px-3 flex items-center space-x-3 border text-xs border-primary text-white"
+        >
+          <p>Read More</p>
+          <ArrowRight />
+        </Link>
       </section>
 
       <section className="w-full h-fit flex items-center justify-center md:w-[45%]">
