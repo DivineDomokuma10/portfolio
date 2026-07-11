@@ -1,132 +1,90 @@
 import Image from "next/image";
 
 import { skills } from "@/lib/constant";
+import { capitalize } from "@/lib/utils";
 import { Card, CardTools } from "../card";
-import { capitalize } from "../../lib/utils";
 import { MasonryGrid, SectionHeader } from "../shared/utils";
 
 const SkillSection = () => {
   const mySkills = Object.keys(skills) as Array<keyof typeof skills>;
 
   return (
-    <section className="w-full flex flex-col space-y-10 justify-center p-5 md:items-center md:justify-between md:flex-row">
-      <section className="w-full flex flex-col space-y-7 md:w-[50%]">
+    <section className="flex w-full flex-col justify-center gap-10 p-5 md:flex-row md:items-center md:justify-between">
+      <div className="w-full space-y-7 md:w-[50%]">
         <SectionHeader title="skill" />
 
         <MasonryGrid className="columns-2 md:columns-3">
-          {mySkills.map((skill, i) => {
-            const data = skills[skill];
+          {mySkills.map((skill) => (
+            <Card
+              key={skill}
+              cardData={skills[skill]}
+              className="mb-5 break-inside-avoid"
+            >
+              <header className="border-b border-b-secondary p-2 text-white transition-colors group-hover:border-b-primary">
+                {capitalize(skill)}
+              </header>
 
-            return (
-              <Card
-                key={skill + i}
-                cardData={data}
-                className="flex-1 mb-5 break-inside-avoid"
-              >
-                <header className="p-2 text-white border-b border-b-secondary group-hover:border-b-primary">
-                  {capitalize(skill)}
-                </header>
-
-                <CardTools />
-              </Card>
-            );
-          })}
+              <CardTools />
+            </Card>
+          ))}
         </MasonryGrid>
-      </section>
+      </div>
 
-      <section className="hidden w-full sm:flex items-center justify-center md:w-[40%]">
-        <SkillIllustrator />
-      </section>
+      <div className="hidden w-full justify-center sm:flex md:w-[40%]">
+        <SkillIllustration />
+      </div>
     </section>
   );
 };
 
-const SkillIllustrator = () => {
+const SkillIllustration = () => {
   return (
-    <>
-      <div className="w-full h-72 relative md:hidden ">
-        <Image
-          alt="grid dot"
-          src={"/Dots.svg"}
-          width={63}
-          height={63}
-          className="absolute top-10 left-0"
-        />
+    <div className="relative h-72 w-full md:w-11/12">
+      <Image
+        src="/Dots.svg"
+        alt=""
+        aria-hidden
+        width={63}
+        height={63}
+        className="absolute top-10 left-0"
+      />
 
-        <Image
-          alt="guy"
-          src={"/Rectangle.svg"}
-          width={84}
-          height={84}
-          className="absolute top-0 right-7"
-        />
+      <Image
+        src="/Rectangle.svg"
+        alt=""
+        aria-hidden
+        width={84}
+        height={84}
+        className="absolute top-0 right-7"
+      />
 
-        <Image
-          alt="grid dot"
-          src={"/logo-outline2.png"}
-          width={104}
-          height={56}
-          className="absolute bottom-0 left-2"
-        />
+      <Image
+        src="/logo-outline2.png"
+        alt=""
+        aria-hidden
+        width={104}
+        height={56}
+        className="absolute bottom-0 left-2 md:left-5"
+      />
 
-        <Image
-          alt="grid dot"
-          src={"/Dots.svg"}
-          width={63}
-          height={63}
-          className="absolute top-1/2 left-2/5"
-        />
+      <Image
+        src="/Dots.svg"
+        alt=""
+        aria-hidden
+        width={63}
+        height={63}
+        className="absolute top-1/2 left-2/5"
+      />
 
-        <Image
-          alt="guy"
-          src={"/Rectangle.svg"}
-          width={52}
-          height={52}
-          className="absolute right-0 bottom-10"
-        />
-      </div>
-      <div className="hidden w-11/12 h-72 relative md:block">
-        <Image
-          alt="grid dot"
-          src={"/Dots.svg"}
-          width={63}
-          height={63}
-          className="absolute top-10 left-0"
-        />
-
-        <Image
-          alt="guy"
-          src={"/Rectangle.svg"}
-          width={84}
-          height={84}
-          className="absolute top-0 right-7"
-        />
-
-        <Image
-          alt="grid dot"
-          src={"/logo-outline2.png"}
-          width={104}
-          height={56}
-          className="absolute bottom-0 left-5"
-        />
-
-        <Image
-          alt="grid dot"
-          src={"/Dots.svg"}
-          width={63}
-          height={63}
-          className="absolute top-1/2 left-2/5"
-        />
-
-        <Image
-          alt="guy"
-          src={"/Rectangle.svg"}
-          width={52}
-          height={52}
-          className="absolute right-0 bottom-10"
-        />
-      </div>
-    </>
+      <Image
+        src="/Rectangle.svg"
+        alt=""
+        aria-hidden
+        width={52}
+        height={52}
+        className="absolute right-0 bottom-10"
+      />
+    </div>
   );
 };
 

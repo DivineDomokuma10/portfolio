@@ -1,102 +1,93 @@
 import Image from "next/image";
-import { SectionHeader } from "../shared/utils";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
+import { SectionHeader } from "../shared/utils";
+
 const AboutSection = () => {
   return (
-    <section className="w-full flex flex-col grid-pattern space-y-10 justify-center p-5 md:items-center md:justify-between md:flex-row-reverse">
-      <section className="w-full flex flex-col space-y-7 md:w-[45%]">
+    <section className="grid-pattern flex w-full flex-col justify-center gap-10 p-5 md:flex-row-reverse md:items-center md:justify-between">
+      <div className="w-full space-y-7 md:w-[45%]">
         <SectionHeader title="about-me" />
 
-        <p className="text-secondary text-sm leading-6 font-light flex flex-col space-y-6">
-          <span>Hello, I&apos;m Divine Domokuma</span>
+        <div className="text-secondary flex flex-col gap-6 text-sm leading-6 font-light">
+          <p>Hello, Divine Domokuma here.</p>
 
-          <span>
-            I&apos;m a self-taught front-end developer based in Nigeria. I can
-            develop responsive websites from scratch and raise them into modern
-            user-friendly web experience
-          </span>
+          <p>
+            I&apos;m a Frontend Developer with a strong focus on building modern
+            web applications using JavaScript, TypeScript, React, Next.js,
+            Node.js.
+          </p>
 
-          <span>
-            Transforming my creativity and knowledge into a websites has been my
-            passion for over a year. I have been helping various clients to
-            establish their presence online. I always strive to learn about the
-            newest technologies and frameworks.
-          </span>
-        </p>
+          <p>
+            I enjoy solving real-world problems through thoughtful software
+            design, creating applications that are responsive, scalable, and
+            easy to maintain.
+          </p>
+
+          {/*<p>
+            Whether I&apos;m implementing a clean frontend interface,
+            integrating backend APIs, or working with databases, I care about
+            writing code that is both efficient and maintainable.
+          </p> 
+          <p>
+            Over the past few years, I&apos;ve built projects ranging from
+            educational platforms and secure communication systems to portfolio
+            websites and productivity tools. Each project has strengthened my
+            understanding of software architecture, state management,
+            authentication, database design, and user experience. I&apos;m
+            constantly learning new technologies, refining my engineering
+            practices, and contributing to projects that challenge me to grow as
+            a developer.
+          </p> */}
+        </div>
 
         <Link
-          target="_blank"
           href="/about-me"
-          className="w-fit py-2 px-3 flex items-center space-x-3 border text-xs border-primary text-white"
+          className="border-primary flex w-fit items-center gap-3 border px-3 py-2 text-xs text-white transition-colors hover:bg-primary hover:text-background"
         >
-          <p>Read More</p>
-          <ArrowRight />
+          <span>Read More</span>
+          <ArrowRight size={16} />
         </Link>
-      </section>
+      </div>
 
-      <section className="w-full h-fit flex items-center justify-center md:w-[45%]">
-        <AboutIllustrator />
-      </section>
+      <div className="hidden md:flex w-full justify-center md:w-[45%]">
+        <AboutIllustration />
+      </div>
     </section>
   );
 };
 
-const AboutIllustrator = () => {
+const AboutIllustration = () => {
   return (
-    <>
-      <div className="w-fit h-fit relative md:hidden">
-        <Image
-          alt="grid dot"
-          src={"/Dots.svg"}
-          width={64}
-          height={64}
-          className="absolute top-1/4 -left-3 z-10"
-        />
+    <div className="relative h-fit w-fit">
+      <Image
+        src="/Dots.svg"
+        alt=""
+        aria-hidden
+        width={84}
+        height={84}
+        className="absolute top-1/4 -left-3 z-10 h-16 w-16 md:h-21 md:w-21"
+      />
 
-        <Image
-          alt="guy"
-          src={"/guy-image2.svg"}
-          width={250}
-          height={307}
-          className="-z-10"
-        />
+      <Image
+        src="/guy-image2.svg"
+        alt="Developer illustration"
+        width={300}
+        height={400}
+        className="h-76.75 w-62.5 md:h-100 md:w-75"
+      />
 
-        <Image
-          alt="grid dot"
-          src={"/Dots-rectangle.svg"}
-          width={104}
-          height={56}
-          className="absolute z-20 right-0 bottom-10"
-        />
-      </div>
-      <div className="hidden w-fit h-fit relative md:block">
-        <Image
-          alt="grid dot"
-          src={"/Dots.svg"}
-          width={84}
-          height={84}
-          className="absolute top-1/4 -left-3 z-10"
-        />
-
-        <Image
-          alt="guy"
-          src={"/guy-image2.svg"}
-          width={300}
-          height={400}
-          className="-z-10"
-        />
-
-        <Image
-          alt="grid dot"
-          src={"/Dots-rectangle.svg"}
-          width={104}
-          height={56}
-          className="absolute z-20 right-0 bottom-10"
-        />
-      </div>
-    </>
+      <Image
+        src="/Dots-rectangle.svg"
+        alt=""
+        aria-hidden
+        width={104}
+        height={56}
+        className="absolute right-0 bottom-10"
+      />
+    </div>
   );
 };
+
 export default AboutSection;

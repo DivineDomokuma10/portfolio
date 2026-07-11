@@ -1,48 +1,48 @@
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 import { projects } from "@/lib/constant";
-import { MasonryGrid, SectionHeader } from "../shared/utils";
 import { Card, CardButton, CardImage, CardTools } from "../card";
-import Link from "next/link";
+import { MasonryGrid, SectionHeader } from "../shared/utils";
 
 const Project = () => {
   return (
-    <section className="w-full flex flex-col space-y-7 justify-center p-5">
-      <div className="w-full flex items-center justify-between sm:space-x-5">
+    <section className="w-full space-y-7 p-5">
+      <header className="flex items-center justify-between gap-5">
         <div className="w-full md:w-1/2">
           <SectionHeader title="projects" />
         </div>
 
         <Link
           href="/works"
-          className="hidden text-sm text-white items-center space-x-2.5 sm:flex hover:text-primary"
+          className="hidden items-center gap-2.5 text-sm text-white transition-colors hover:text-primary md:flex"
         >
-          <span className="">See More</span>
-          <ArrowRight />
+          <span>See More</span>
+          <ArrowRight size={18} />
         </Link>
-      </div>
+      </header>
 
       <MasonryGrid className="columns-1 md:columns-3">
-        {projects.map((prj, i) => (
+        {projects.map((project) => (
           <Card
-            key={i}
-            cardData={prj}
-            className="flex-1 mb-5 break-inside-avoid"
+            key={project.textInfo?.title}
+            cardData={project}
+            className="mb-5 break-inside-avoid"
           >
-            <CardImage className="w-full h-52" />
+            <CardImage className="h-52 w-full" />
 
-            <CardTools className=" border-y-2 border-secondary group-hover:border-primary" />
+            <CardTools className="border-y-2 border-secondary transition-colors group-hover:border-primary" />
 
-            <div className="flex flex-col space-y-3.5 p-3">
-              <h3 className="text-white text-lg">
-                {prj.textInfo?.title || "No Title"}{" "}
+            <div className="space-y-3.5 p-3">
+              <h3 className="text-lg text-white">
+                {project.textInfo?.title ?? "Untitled Project"}
               </h3>
 
               <p className="text-secondary text-xs">
-                {prj.textInfo?.desc || "No Description"}
+                {project.textInfo?.desc ?? "No description available."}
               </p>
 
-              <div className="flex items-center w-full justify-between">
+              <div className="flex items-center justify-between">
                 <CardButton variant="live" />
                 <CardButton variant="github" />
               </div>
@@ -53,10 +53,10 @@ const Project = () => {
 
       <Link
         href="/works"
-        className="w-fit py-2 px-3 flex items-center space-x-3 border text-xs border-primary text-white md:hidden"
+        className="border-primary flex w-fit items-center gap-3 border px-3 py-2 text-xs text-white transition-colors hover:bg-primary hover:text-background md:hidden"
       >
-        <p>Read More</p>
-        <ArrowRight />
+        <span>See More</span>
+        <ArrowRight size={16} />
       </Link>
     </section>
   );

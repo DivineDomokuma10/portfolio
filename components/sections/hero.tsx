@@ -2,81 +2,54 @@ import Image from "next/image";
 
 const HeroSection = () => {
   return (
-    <section className="w-full flex flex-col space-y-10 justify-center p-5 md:min-h-[60dvh] md:items-center md:justify-between md:flex-row">
-      <section className="w-full flex flex-col space-y-3 md:w-[45%]">
-        <h1 className="text-3xl text-white font-bold leading-12">
-          Hi, <span className="text-primary">Divine Domokuma here</span>. I am a{" "}
-          <span className="text-primary">Frontend Developer</span>.
+    <section className="flex w-full flex-col justify-center gap-10 p-5 md:min-h-[60dvh] md:flex-row md:items-center md:justify-between">
+      <div className="w-full space-y-3 md:w-[45%]">
+        <h1 className="text-primary text-3xl font-bold leading-tight md:text-5xl">
+          Building scalable web applications.
         </h1>
 
         <p className="text-secondary">
-          I craft responsive, reactive and scalable web applications, where
-          technology meets creativity.
+          Frontend Developer who prioritizes performance, maintainability, and
+          user experience.
         </p>
-      </section>
+      </div>
 
-      <section className="w-full h-fit flex items-center justify-center md:w-[45%]">
-        <HeroIllustrator />
-      </section>
+      <div className="flex w-full justify-center md:w-[45%]">
+        <HeroIllustration />
+      </div>
     </section>
   );
 };
 
-const HeroIllustrator = () => {
+const HeroIllustration = () => {
   return (
-    <>
-      {" "}
-      <div className="w-fit h-fit relative md:hidden">
-        <Image
-          alt="logo outline"
-          src={"/logo-outline2.png"}
-          width={104}
-          height={104}
-          className="absolute top-1/4 left-0 -z-10"
-        />
+    <div className="relative h-fit w-fit">
+      <Image
+        src="/logo-outline2.png"
+        alt="Logo outline"
+        width={155}
+        height={155}
+        className="absolute top-1/4 left-0 -z-10 h-26 w-26 md:h-38.75 md:w-38.75"
+      />
 
-        <Image
-          alt="guy"
-          src={"/guy-image.svg"}
-          width={307}
-          height={260}
-          className="z-10"
-        />
+      <Image
+        src="/guy-image.svg"
+        alt="Developer illustration"
+        width={457}
+        height={386}
+        className="h-65 w-76.75 md:h-96.5 md:w-114.25"
+        priority
+      />
 
-        <Image
-          alt="guy"
-          src={"/Dots.svg"}
-          width={84}
-          height={84}
-          className="absolute z-20 right-0 bottom-10"
-        />
-      </div>
-      <div className="hidden w-fit h-fit relative md:block">
-        <Image
-          alt="logo outline"
-          src={"/logo-outline2.png"}
-          width={155}
-          height={155}
-          className="absolute top-1/4 left-0 -z-10"
-        />
-
-        <Image
-          alt="guy"
-          src={"/guy-image.svg"}
-          width={457}
-          height={386}
-          className="z-10"
-        />
-
-        <Image
-          alt="guy"
-          src={"/Dots.svg"}
-          width={84}
-          height={84}
-          className="absolute z-20 right-0 bottom-10"
-        />
-      </div>
-    </>
+      <Image
+        src="/Dots.svg"
+        alt=""
+        aria-hidden
+        width={84}
+        height={84}
+        className="absolute right-0 bottom-10 h-16 w-16 md:h-20 md:w-20"
+      />
+    </div>
   );
 };
 
