@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import "./globals.css";
+import { jsonLd } from "@/lib/schema";
 import { siteConfig } from "@/lib/metadata";
 import { Wrapper } from "@/components/shared/utils";
 
@@ -83,6 +84,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLd),
+          }}
+        />
+      </head>
+
       <body className="bg-background grid-pattern max-w-screen min-h-dvh antialiased">
         <Wrapper>{children}</Wrapper>
       </body>
