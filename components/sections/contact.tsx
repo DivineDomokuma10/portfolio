@@ -3,7 +3,7 @@ import { CONTACT_INFO } from "@/lib/constant";
 
 const Contact = () => {
   return (
-    <section className="w-full flex flex-col space-y-5 md:space-y-0 md:flex-row p-5">
+    <section className="w-full flex flex-col space-y-5 md:space-y-0 md:flex-row p-7">
       <aside className="w-full flex flex-col space-y-5 md:w-[45%]">
         <SectionHeader title="contact" />
 

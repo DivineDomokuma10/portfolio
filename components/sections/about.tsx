@@ -6,7 +6,7 @@ import { SectionHeader } from "../shared/utils";
 
 const AboutSection = () => {
   return (
-    <section className="grid-pattern flex w-full flex-col justify-center gap-10 p-5 md:flex-row-reverse md:items-center md:justify-between">
+    <section className="grid-pattern flex w-full flex-col justify-center gap-10 p-7 md:flex-row-reverse md:items-center md:justify-between">
       <div className="w-full space-y-7 md:w-[45%]">
         <SectionHeader title="about-me" />
 

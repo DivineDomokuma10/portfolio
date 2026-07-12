@@ -9,7 +9,7 @@ const SkillSection = () => {
   const mySkills = Object.keys(skills) as Array<keyof typeof skills>;
 
   return (
-    <section className="flex w-full flex-col justify-center gap-10 p-5 md:flex-row md:items-center md:justify-between">
+    <section className="flex w-full flex-col justify-center gap-10 p-7 md:flex-row md:items-center md:justify-between">
       <div className="w-full space-y-7 md:w-[50%]">
         <SectionHeader title="skill" />
 

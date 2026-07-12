@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const HeroSection = () => {
   return (
-    <section className="flex w-full flex-col justify-center gap-10 p-5 md:min-h-[60dvh] md:flex-row md:items-center md:justify-between">
+    <section className="flex w-full flex-col justify-center gap-10 p-7 md:min-h-[60dvh] md:flex-row md:items-center md:justify-between">
       <div className="w-full space-y-3 md:w-[45%]">
         <h1 className="text-primary text-3xl font-bold leading-tight md:text-5xl">
           Building scalable web applications.

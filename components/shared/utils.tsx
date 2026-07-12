@@ -4,6 +4,7 @@ import { Activity, ReactNode, useState } from "react";
 
 import Nav, { SideBar } from "./nav";
 import { cn } from "@/lib/utils";
+import Footer from "./footer";
 
 interface SectionHeaderProps {
   title: string;
@@ -23,6 +24,8 @@ export const Wrapper = ({ children }: { children: ReactNode }) => {
       </Activity>
 
       {children}
+
+      <Footer />
     </main>
   );
 };

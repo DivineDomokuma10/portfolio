@@ -1,5 +1,3 @@
-// lib/metadata.ts
-
 export const siteConfig = {
   name: "Divine Domokuma",
   title: "Divine Domokuma | Frontend Developer",
