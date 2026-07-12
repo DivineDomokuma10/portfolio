@@ -2,6 +2,8 @@ export const siteConfig = {
   name: "Divine Domokuma",
   title: "Divine Domokuma | Frontend Developer",
 
+  googleVerification: "-ujQ3WURy_MytwXs7j3NT0z9ThDd0DKIq75XyDCAvqU",
+
   description:
     "Frontend JavaScript & TypeScript Developer specializing in React, Next.js, and Tailwind CSS. I build responsive, accessible, and user-friendly web applications.",
 

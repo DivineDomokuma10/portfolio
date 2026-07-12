@@ -22,6 +22,9 @@ export const metadata: Metadata = {
       url: siteConfig.url,
     },
   ],
+  verification: {
+    google: siteConfig.googleVerification,
+  },
 
   creator: siteConfig.creator,
 
