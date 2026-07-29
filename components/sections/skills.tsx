@@ -1,38 +1,32 @@
 "use client";
-import { useRef } from "react";
-import { motion, useInView } from "motion/react";
 import Image from "next/image";
 
 import { skills } from "@/lib/constant";
 import { capitalize } from "@/lib/utils";
+
 import { Card, CardTools } from "../card";
-import { MasonryGrid, SectionHeader } from "../shared/utils";
+import { Float } from "../animations/float";
+import { SectionHeader } from "../shared/utils";
+import { StaggerGroup, StaggerItem } from "../animations/stagger";
 
 const SkillSection = () => {
   const mySkills = Object.keys(skills) as Array<keyof typeof skills>;
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
-    <section
-      ref={ref}
-      className="flex w-full flex-col justify-center gap-10 p-7 md:flex-row md:items-center md:justify-between"
-    >
+    <section className="flex w-full flex-col justify-center gap-10 p-7 md:flex-row md:items-center md:justify-between">
       <div className="w-full space-y-7 md:w-[50%]">
         <SectionHeader title="skill" />
 
-        <MasonryGrid className="columns-2 md:columns-3">
+        <StaggerGroup
+          direction="up"
+          staggerDelay={0.15}
+          className="columns-2 md:columns-3"
+          margin="-50px"
+        >
           {mySkills.map((skill, i) => (
-            <motion.div
+            <StaggerItem
               key={skill}
-              initial={{ y: -80, opacity: 0 }}
-              animate={isInView ? { y: 0, opacity: 1 } : { y: -80, opacity: 0 }}
-              transition={{
-                type: "spring",
-                stiffness: 100,
-                damping: 18,
-                delay: i * 0.15,
-              }}
+              index={i}
               className="mb-5 break-inside-avoid"
             >
               <Card cardData={skills[skill]}>
@@ -42,9 +36,9 @@ const SkillSection = () => {
 
                 <CardTools />
               </Card>
-            </motion.div>
+            </StaggerItem>
           ))}
-        </MasonryGrid>
+        </StaggerGroup>
       </div>
 
       <div className="hidden w-full justify-center sm:flex md:w-[40%]">
@@ -57,50 +51,31 @@ const SkillSection = () => {
 const SkillIllustration = () => {
   return (
     <div className="relative h-72 w-full md:w-11/12">
-      <Image
-        src="/Dots.svg"
-        alt=""
-        aria-hidden
-        width={63}
-        height={63}
-        className="animate-float absolute top-10 left-0"
-      />
+      <Float speed="normal" className="absolute top-10 left-0">
+        <Image src="/Dots.svg" alt="" aria-hidden width={63} height={63} />
+      </Float>
 
-      <Image
-        src="/Rectangle.svg"
-        alt=""
-        aria-hidden
-        width={84}
-        height={84}
-        className="animate-float-slow absolute top-0 right-7"
-      />
+      <Float speed="slow" className="absolute top-0 right-7">
+        <Image src="/Rectangle.svg" alt="" aria-hidden width={84} height={84} />
+      </Float>
 
-      <Image
-        src="/logo-outline2.png"
-        alt=""
-        aria-hidden
-        width={104}
-        height={56}
-        className="animate-float-reverse absolute bottom-0 left-2 md:left-5"
-      />
+      <Float speed="reverse" className="absolute bottom-0 left-2 md:left-5">
+        <Image
+          src="/logo-outline2.png"
+          alt=""
+          aria-hidden
+          width={104}
+          height={56}
+        />
+      </Float>
 
-      <Image
-        src="/Dots.svg"
-        alt=""
-        aria-hidden
-        width={63}
-        height={63}
-        className="animate-float-spin absolute top-1/2 left-2/5"
-      />
+      <Float speed="spin" className="absolute top-1/2 left-2/5">
+        <Image src="/Dots.svg" alt="" aria-hidden width={63} height={63} />
+      </Float>
 
-      <Image
-        src="/Rectangle.svg"
-        alt=""
-        aria-hidden
-        width={52}
-        height={52}
-        className="animate-float absolute right-0 bottom-10"
-      />
+      <Float speed="normal" className="absolute right-0 bottom-10">
+        <Image src="/Rectangle.svg" alt="" aria-hidden width={52} height={52} />
+      </Float>
     </div>
   );
 };

@@ -1,9 +1,11 @@
+"use client";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 import { projects } from "@/lib/constant";
 import { Card, CardButton, CardImage, CardTools } from "../card";
-import { MasonryGrid, SectionHeader } from "../shared/utils";
+import { SectionHeader } from "../shared/utils";
+import { StaggerGroup, WaveStaggerItem } from "../animations/stagger";
 
 const Project = () => {
   return (
@@ -22,34 +24,41 @@ const Project = () => {
         </Link>
       </header>
 
-      <MasonryGrid className="columns-1 md:columns-3">
-        {projects.map((project) => (
-          <Card
+      <StaggerGroup
+        direction="up"
+        staggerDelay={0.15}
+        className="w-full columns-1 md:columns-3"
+      >
+        {projects.map((project, i) => (
+          <WaveStaggerItem
             key={project.textInfo?.title}
-            cardData={project}
+            index={i}
+            directions={["left", "down", "right"]}
             className="mb-5 break-inside-avoid"
           >
-            <CardImage className="h-52 w-full" />
+            <Card cardData={project}>
+              <CardImage className="h-52 w-full" />
 
-            <CardTools className="border-y-2 border-secondary transition-colors group-hover:border-primary" />
+              <CardTools className="border-y-2 border-secondary transition-colors group-hover:border-primary" />
 
-            <div className="space-y-3.5 p-3">
-              <h3 className="text-lg text-white">
-                {project.textInfo?.title ?? "Untitled Project"}
-              </h3>
+              <div className="space-y-3.5 p-3">
+                <h3 className="text-lg text-white">
+                  {project.textInfo?.title ?? "Untitled Project"}
+                </h3>
 
-              <p className="text-secondary text-xs">
-                {project.textInfo?.desc ?? "No description available."}
-              </p>
+                <p className="text-secondary text-xs">
+                  {project.textInfo?.desc ?? "No description available."}
+                </p>
 
-              <div className="flex items-center justify-between">
-                <CardButton variant="live" />
-                <CardButton variant="github" />
+                <div className="flex items-center justify-between">
+                  <CardButton variant="live" />
+                  <CardButton variant="github" />
+                </div>
               </div>
-            </div>
-          </Card>
+            </Card>
+          </WaveStaggerItem>
         ))}
-      </MasonryGrid>
+      </StaggerGroup>
 
       <Link
         href="/works"

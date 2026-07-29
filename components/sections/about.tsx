@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 import { SectionHeader } from "../shared/utils";
+import { Float } from "../animations/float";
 
 const AboutSection = () => {
   return (
@@ -61,14 +62,9 @@ const AboutSection = () => {
 const AboutIllustration = () => {
   return (
     <div className="relative h-fit w-fit">
-      <Image
-        src="/Dots.svg"
-        alt=""
-        aria-hidden
-        width={84}
-        height={84}
-        className="animate-float-reverse absolute top-1/4 -left-3 z-10 h-16 w-16 md:h-21 md:w-21"
-      />
+      <Float speed="reverse" className="absolute top-1/4 -left-3 z-10 h-16 w-16 md:h-21 md:w-21">
+        <Image src="/Dots.svg" alt="" aria-hidden width={84} height={84} />
+      </Float>
 
       <Image
         src="/guy-image2.svg"
@@ -78,14 +74,9 @@ const AboutIllustration = () => {
         className="h-76.75 w-62.5 md:h-100 md:w-75"
       />
 
-      <Image
-        src="/Dots-rectangle.svg"
-        alt=""
-        aria-hidden
-        width={104}
-        height={56}
-        className="animate-float-spin absolute right-0 bottom-10"
-      />
+      <Float speed="spin" className="absolute right-0 bottom-10">
+        <Image src="/Dots-rectangle.svg" alt="" aria-hidden width={104} height={56} />
+      </Float>
     </div>
   );
 };

@@ -3,3 +3,11 @@ export type P<T> = {
 } & {};
 
 export type TCardBtnVariant = "live" | "github";
+
+type MarginValue = `${number}${"px" | "%"}`;
+
+export type TMarginType =
+  | MarginValue
+  | `${MarginValue} ${MarginValue}`
+  | `${MarginValue} ${MarginValue} ${MarginValue}`
+  | `${MarginValue} ${MarginValue} ${MarginValue} ${MarginValue}`;
