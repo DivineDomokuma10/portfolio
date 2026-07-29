@@ -1,3 +1,6 @@
+"use client";
+import { useRef } from "react";
+import { motion, useInView } from "motion/react";
 import Image from "next/image";
 
 import { skills } from "@/lib/constant";
@@ -7,25 +10,39 @@ import { MasonryGrid, SectionHeader } from "../shared/utils";
 
 const SkillSection = () => {
   const mySkills = Object.keys(skills) as Array<keyof typeof skills>;
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   return (
-    <section className="flex w-full flex-col justify-center gap-10 p-7 md:flex-row md:items-center md:justify-between">
+    <section
+      ref={ref}
+      className="flex w-full flex-col justify-center gap-10 p-7 md:flex-row md:items-center md:justify-between"
+    >
       <div className="w-full space-y-7 md:w-[50%]">
         <SectionHeader title="skill" />
 
         <MasonryGrid className="columns-2 md:columns-3">
-          {mySkills.map((skill) => (
-            <Card
+          {mySkills.map((skill, i) => (
+            <motion.div
               key={skill}
-              cardData={skills[skill]}
+              initial={{ y: -80, opacity: 0 }}
+              animate={isInView ? { y: 0, opacity: 1 } : { y: -80, opacity: 0 }}
+              transition={{
+                type: "spring",
+                stiffness: 100,
+                damping: 18,
+                delay: i * 0.15,
+              }}
               className="mb-5 break-inside-avoid"
             >
-              <header className="border-b border-b-secondary p-2 text-white transition-colors group-hover:border-b-primary">
-                {capitalize(skill)}
-              </header>
+              <Card cardData={skills[skill]}>
+                <header className="border-b border-b-secondary p-2 text-white transition-colors group-hover:border-b-primary">
+                  {capitalize(skill)}
+                </header>
 
-              <CardTools />
-            </Card>
+                <CardTools />
+              </Card>
+            </motion.div>
           ))}
         </MasonryGrid>
       </div>

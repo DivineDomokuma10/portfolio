@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
-import { ReactNode, useState } from "react";
-import { AnimatePresence } from "motion/react";
+import { ReactNode, useRef, useState } from "react";
+import { AnimatePresence, motion, useInView } from "motion/react";
 
 import Nav, { SideBar } from "./nav";
 import { cn } from "@/lib/utils";
@@ -43,14 +43,33 @@ export const Logo = () => {
 };
 
 export const SectionHeader = ({ title }: SectionHeaderProps) => {
-  return (
-    <header className="flex-1 flex space-x-4 items-center">
-      <h1 className="font-medium text-white text-2xl md:text-3xl">
-        <span className="text-primary">#</span>
-        {title}
-      </h1>
+  const ref = useRef(null);
+  const isInView = useInView(ref, { margin: "-80px" });
 
-      <div className="flex-1 h-0.5 bg-primary" />
+  return (
+    <header ref={ref} className="flex-1 flex space-x-4 items-center overflow-hidden">
+      <motion.h1
+        className="font-medium text-white text-2xl md:text-3xl whitespace-nowrap"
+        initial={{ x: -30, opacity: 0 }}
+        animate={isInView ? { x: 0, opacity: 1 } : { x: -30, opacity: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+      >
+        <motion.span
+          className="text-primary inline-block"
+          whileHover={{ scale: 1.2 }}
+          transition={{ type: "spring", stiffness: 300 }}
+        >
+          #
+        </motion.span>
+        {title}
+      </motion.h1>
+
+      <motion.div
+        className="flex-1 h-0.5 bg-primary origin-left"
+        initial={{ scaleX: 0 }}
+        animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut", delay: 0.15 }}
+      />
     </header>
   );
 };
