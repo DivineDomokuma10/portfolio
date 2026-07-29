@@ -1,10 +1,16 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 
 import "./globals.css";
 import { jsonLd } from "@/lib/schema";
 import { siteConfig } from "@/lib/metadata";
 import { Wrapper } from "@/components/shared/utils";
 import { Analytics } from "@vercel/analytics/next";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#151718",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
