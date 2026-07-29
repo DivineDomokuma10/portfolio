@@ -4,6 +4,7 @@ import "./globals.css";
 import { jsonLd } from "@/lib/schema";
 import { siteConfig } from "@/lib/metadata";
 import { Wrapper } from "@/components/shared/utils";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -96,6 +97,8 @@ export default function RootLayout({
       <body className="bg-background grid-pattern max-w-screen min-h-dvh antialiased">
         <Wrapper>{children}</Wrapper>
       </body>
+
+      <Analytics />
     </html>
   );
 }
