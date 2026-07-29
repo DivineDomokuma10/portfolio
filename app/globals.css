@@ -23,68 +23,15 @@
 
   .grid-pattern::before {
     content: "";
-    position: absolute;
+    position: fixed;
     inset: 0;
-
-    --color: rgba(120, 221, 154, 0.01);
-
-    background-image: linear-gradient(
-        0deg,
-        transparent 24%,
-        var(--color) 25%,
-        var(--color) 26%,
-        transparent 27%,
-        transparent 74%,
-        var(--color) 75%,
-        var(--color) 76%,
-        transparent 77%,
-        transparent
-      ),
-      linear-gradient(
-        90deg,
-        transparent 24%,
-        var(--color) 25%,
-        var(--color) 26%,
-        transparent 27%,
-        transparent 74%,
-        var(--color) 75%,
-        var(--color) 76%,
-        transparent 77%,
-        transparent
-      );
-
-    /* Mobile-first */
-    background-size: 32px 32px;
-    background-repeat: repeat;
     pointer-events: none;
+    z-index: 0;
   }
 
-  /* sm */
-  @media (min-width: 640px) {
-    .grid-pattern::before {
-      background-size: 48px 48px;
-    }
-  }
-
-  /* md */
-  @media (min-width: 768px) {
-    .grid-pattern::before {
-      background-size: 60px 60px;
-    }
-  }
-
-  /* lg */
-  @media (min-width: 1024px) {
-    .grid-pattern::before {
-      background-size: 70px 70px;
-    }
-  }
-
-  /* xl */
-  @media (min-width: 1280px) {
-    .grid-pattern::before {
-      background-size: 80px 80px;
-    }
+  .grid-pattern > * {
+    position: relative;
+    z-index: 1;
   }
 
   .animate-float {
