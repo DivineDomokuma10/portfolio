@@ -46,7 +46,7 @@ const SkillIllustration = () => {
         aria-hidden
         width={63}
         height={63}
-        className="absolute top-10 left-0"
+        className="animate-float absolute top-10 left-0"
       />
 
       <Image
@@ -55,7 +55,7 @@ const SkillIllustration = () => {
         aria-hidden
         width={84}
         height={84}
-        className="absolute top-0 right-7"
+        className="animate-float-slow absolute top-0 right-7"
       />
 
       <Image
@@ -64,7 +64,7 @@ const SkillIllustration = () => {
         aria-hidden
         width={104}
         height={56}
-        className="absolute bottom-0 left-2 md:left-5"
+        className="animate-float-reverse absolute bottom-0 left-2 md:left-5"
       />
 
       <Image
@@ -73,7 +73,7 @@ const SkillIllustration = () => {
         aria-hidden
         width={63}
         height={63}
-        className="absolute top-1/2 left-2/5"
+        className="animate-float-spin absolute top-1/2 left-2/5"
       />
 
       <Image
@@ -82,7 +82,7 @@ const SkillIllustration = () => {
         aria-hidden
         width={52}
         height={52}
-        className="absolute right-0 bottom-10"
+        className="animate-float absolute right-0 bottom-10"
       />
     </div>
   );

@@ -29,7 +29,7 @@ const HeroIllustration = () => {
         alt="Logo outline"
         width={155}
         height={155}
-        className="absolute top-1/4 left-0 -z-10 h-26 w-26 md:h-38.75 md:w-38.75"
+        className="animate-float-slow absolute top-1/4 left-0 -z-10 h-26 w-26 md:h-38.75 md:w-38.75"
       />
 
       <Image
@@ -47,7 +47,7 @@ const HeroIllustration = () => {
         aria-hidden
         width={84}
         height={84}
-        className="absolute right-0 bottom-10 h-16 w-16 md:h-20 md:w-20"
+        className="animate-float absolute right-0 bottom-10 h-16 w-16 md:h-20 md:w-20"
       />
     </div>
   );

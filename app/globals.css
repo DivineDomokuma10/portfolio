@@ -86,9 +86,53 @@
       background-size: 80px 80px;
     }
   }
+
+  .animate-float {
+    animation: float 5s ease-in-out infinite;
+  }
+
+  .animate-float-slow {
+    animation: float 7s ease-in-out infinite;
+  }
+
+  .animate-float-reverse {
+    animation: float-reverse 6s ease-in-out infinite;
+  }
+
+  .animate-float-spin {
+    animation: float-spin 8s ease-in-out infinite;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes float-reverse {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(12px);
+  }
+}
+
+@keyframes float-spin {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(3deg);
+  }
 }
 
 body {
   background: var(--background);
   font-family: "Fira Code", Arial, Helvetica, sans-serif;
+  scroll-behavior: smooth;
 }

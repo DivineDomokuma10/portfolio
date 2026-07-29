@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
-import { Activity, ReactNode, useState } from "react";
+import { ReactNode, useState } from "react";
+import { AnimatePresence } from "motion/react";
 
 import Nav, { SideBar } from "./nav";
 import { cn } from "@/lib/utils";
@@ -19,9 +20,9 @@ export const Wrapper = ({ children }: { children: ReactNode }) => {
     <main className="w-full h-full flex flex-col items-center">
       <Nav {...{ onDropToggle }} />
 
-      <Activity mode={isDropDownOpen ? "visible" : "hidden"}>
-        <SideBar {...{ onDropToggle }} />
-      </Activity>
+      <AnimatePresence>
+        {isDropDownOpen && <SideBar {...{ onDropToggle }} />}
+      </AnimatePresence>
 
       {children}
 

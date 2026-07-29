@@ -67,7 +67,7 @@ const AboutIllustration = () => {
         aria-hidden
         width={84}
         height={84}
-        className="absolute top-1/4 -left-3 z-10 h-16 w-16 md:h-21 md:w-21"
+        className="animate-float-reverse absolute top-1/4 -left-3 z-10 h-16 w-16 md:h-21 md:w-21"
       />
 
       <Image
@@ -84,7 +84,7 @@ const AboutIllustration = () => {
         aria-hidden
         width={104}
         height={56}
-        className="absolute right-0 bottom-10"
+        className="animate-float-spin absolute right-0 bottom-10"
       />
     </div>
   );
