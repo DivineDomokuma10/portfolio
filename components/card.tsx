@@ -54,16 +54,18 @@ export const CardTools = ({ className }: Props) => {
 };
 
 export const CardImage = ({ className }: Props) => {
-  const { img } = useCardContext();
+  const { img, textInfo } = useCardContext();
 
   return (
     <div className={cn("overflow-hidden relative", className)}>
       {img ? (
         <Image
           fill
-          quality={100}
-          alt="card-img"
+          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+          quality={80}
+          alt={textInfo?.title ?? "Project screenshot"}
           src={img}
+          loading="lazy"
           className="w-full h-full top-0 absolute object-fill transition-all duration-200 hover:-rotate-45 hover:scale-200"
         />
       ) : (
@@ -81,10 +83,13 @@ export const CardButton = ({
 
   const link = links?.[variant as keyof typeof links] || "/";
 
+  const label = `${capitalize(variant)} link${link !== "/" ? "" : " (unavailable)"}`;
+
   return (
     <a
       href={link}
       target="_blank"
+      aria-label={label}
       className={cn(
         "py-2 px-3 flex items-center space-x-3 border text-xs text-white",
         className,

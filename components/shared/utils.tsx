@@ -6,6 +6,7 @@ import { AnimatePresence, motion, useInView } from "motion/react";
 import Nav, { SideBar } from "./nav";
 import { cn } from "@/lib/utils";
 import Footer from "./footer";
+import { SkipLink } from "./skip-link";
 
 interface SectionHeaderProps {
   title: string;
@@ -18,13 +19,17 @@ export const Wrapper = ({ children }: { children: ReactNode }) => {
 
   return (
     <main className="w-full h-full flex flex-col items-center">
-      <Nav {...{ onDropToggle }} />
+      <SkipLink />
+
+      <Nav {...{ onDropToggle, isDropDownOpen }} />
 
       <AnimatePresence>
         {isDropDownOpen && <SideBar {...{ onDropToggle }} />}
       </AnimatePresence>
 
-      {children}
+      <div id="main-content" className="w-full flex flex-col items-center">
+        {children}
+      </div>
 
       <Footer />
     </main>

@@ -11,9 +11,10 @@ import { NAV_LINKS } from "@/lib/constant";
 
 interface INav {
   onDropToggle: () => void;
+  isDropDownOpen?: boolean;
 }
 
-const Nav = ({ onDropToggle }: INav) => {
+const Nav = ({ onDropToggle, isDropDownOpen }: INav) => {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
 
@@ -28,9 +29,10 @@ const Nav = ({ onDropToggle }: INav) => {
     <motion.nav
       className="sticky top-4 z-40 w-full flex justify-center px-4"
       layout
+      aria-label="Main navigation"
     >
       <div
-className={cn(
+ className={cn(
   "w-full md:w-5/6 rounded-xl transition-all duration-300 flex items-center justify-between px-5 border",
   scrolled
     ? "py-3 bg-background/80 backdrop-blur-md border-secondary/20 shadow-sm"
@@ -39,11 +41,13 @@ className={cn(
       >
         <Logo />
 
-        <div className="items-center space-x-7 hidden md:flex">
+        <div className="items-center space-x-7 hidden md:flex" role="list">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.path}
               href={link.path}
+              role="listitem"
+              aria-current={pathname === link.path ? "page" : undefined}
               className={cn(
                 "text-sm font-medium text-secondary duration-200 hover:text-white",
                 {
@@ -51,18 +55,20 @@ className={cn(
                 }
               )}
             >
-              <span className="text-primary">#</span>
+              <span className="text-primary" aria-hidden>#</span>
               {link.text}
             </Link>
           ))}
         </div>
 
-        <div
+        <button
           onClick={onDropToggle}
+          aria-label={isDropDownOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isDropDownOpen}
           className="group p-2 rounded-md hover:bg-primary-opacity md:hidden"
         >
-          <Command className="w-5 h-5 text-white font-bold duration-150 group-hover:text-primary" />
-        </div>
+          <Command className="w-5 h-5 text-white font-bold duration-150 group-hover:text-primary" aria-hidden />
+        </button>
       </div>
     </motion.nav>
   );
@@ -78,6 +84,8 @@ export const SideBar = ({ onDropToggle }: INav) => {
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ type: "spring", damping: 25, stiffness: 300 }}
       className="fixed top-28 left-1/2 -translate-x-1/2 w-[calc(100%-2.5rem)] md:w-5/6 md:hidden rounded-xl bg-background/80 backdrop-blur-md border border-secondary/20 shadow-sm flex flex-col p-5 space-y-3 origin-top z-30"
+      role="navigation"
+      aria-label="Mobile navigation"
     >
       {NAV_LINKS.map((link, i) => (
         <motion.div
@@ -89,6 +97,7 @@ export const SideBar = ({ onDropToggle }: INav) => {
           <Link
             href={link.path}
             onClick={onDropToggle}
+            aria-current={pathname === link.path ? "page" : undefined}
             className={cn(
               "text-lg py-2 px-3 rounded-sm font-medium text-secondary duration-200 hover:text-white hover:bg-primary-opacity block",
               {
@@ -96,7 +105,7 @@ export const SideBar = ({ onDropToggle }: INav) => {
               }
             )}
           >
-            <span className="text-primary">#</span>
+            <span className="text-primary" aria-hidden>#</span>
             {link.text}
           </Link>
         </motion.div>

@@ -3,7 +3,7 @@ import { Logo } from "./utils";
 
 const Footer = () => {
   return (
-    <footer className="mt-16 w-full flex flex-col items-center justify-center bg-background px-7 py-10 border-t border-t-secondary">
+    <footer className="mt-16 w-full flex flex-col items-center justify-center bg-background px-7 py-10 border-t border-t-secondary" role="contentinfo">
       <main className="w-full flex flex-col space-y-10 md:w-5/6">
         <section className="w-full flex flex-col space-y-7 md:space-y-0 md:flex-row justify-between">
           <div className="flex flex-col space-y-5 md:w-1/3">
