@@ -25,7 +25,7 @@ export const Card = ({
       <div
         className={cn(
           "group h-fit border-2 border-secondary flex flex-col transition-all duration-200 hover:border-primary",
-          className
+          className,
         )}
       >
         {children}
@@ -41,7 +41,7 @@ export const CardTools = ({ className }: Props) => {
     <div
       className={cn(
         "w-full flex flex-wrap items-center space-x-2.5 gap-1.5 p-2",
-        className
+        className,
       )}
     >
       {techs.map((tech, i) => (
@@ -57,21 +57,23 @@ export const CardImage = ({ className }: Props) => {
   const { img, textInfo } = useCardContext();
 
   return (
-    <div className={cn("overflow-hidden relative", className)}>
+    <>
       {img ? (
-        <Image
-          fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-          quality={80}
-          alt={textInfo?.title ?? "Project screenshot"}
-          src={img}
-          loading="lazy"
-          className="w-full h-full top-0 absolute object-fill transition-all duration-200 hover:-rotate-45 hover:scale-200"
-        />
+        <div className={cn("overflow-hidden relative", className)}>
+          <Image
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+            quality={80}
+            alt={textInfo?.title ?? "Project screenshot"}
+            src={img}
+            loading="lazy"
+            className="w-full h-full top-0 absolute object-fill transition-all duration-200 hover:-rotate-45 hover:scale-200"
+          />
+        </div>
       ) : (
-        <>img url: {img}</>
+        <></>
       )}
-    </div>
+    </>
   );
 };
 
@@ -96,7 +98,7 @@ export const CardButton = ({
         {
           "border-primary": variant === "live",
           "border-secondary": variant === "github",
-        }
+        },
       )}
     >
       <p>{capitalize(variant)}</p>

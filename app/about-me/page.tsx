@@ -1,9 +1,14 @@
-import type { Metadata } from "next";
 import Image from "next/image";
+import type { Metadata } from "next";
+
 import { siteConfig } from "@/lib/metadata";
-import { SectionHeader } from "@/components/shared/utils";
+
+import { Float } from "@/components/animations/float";
+import { PageHeader } from "@/components/shared/utils";
 import { Reveal } from "@/components/animations/reveal";
+import SkillSection from "@/components/sections/skills";
 import { PageTransition } from "@/components/shared/page-transition";
+import { ABOUT_ME_INFO } from "@/lib/constant";
 
 export const metadata: Metadata = {
   title: "About Me",
@@ -18,12 +23,25 @@ export const metadata: Metadata = {
 
 export default function AboutMePage() {
   return (
-    <PageTransition>
-      <section className="w-full space-y-10 p-7 md:w-5/6 md:mx-auto">
-        <SectionHeader title="about-me" />
+    <PageTransition className="w-full h-fit flex flex-col p-5 space-y-10 md:w-5/6">
+      <PageHeader desc="A little bit about me" title="about-me" />
 
-        <div className="flex flex-col gap-10 md:flex-row md:items-center">
-          <Reveal direction="left" className="flex justify-center md:w-[40%]">
+      <section className="w-full flex flex-col gap-10 md:flex-row md:items-center">
+        <Reveal direction="left" className="flex justify-center md:w-[40%]">
+          <div className="relative h-fit w-fit">
+            <Float
+              speed="reverse"
+              className="absolute -top-6 -left-6 z-10 h-16 w-16 md:h-21 md:w-21"
+            >
+              <Image
+                src="/Dots.svg"
+                alt=""
+                aria-hidden
+                width={84}
+                height={84}
+              />
+            </Float>
+
             <Image
               src="/guy-image2.svg"
               alt="Developer illustration"
@@ -32,50 +50,38 @@ export default function AboutMePage() {
               sizes="(max-width: 768px) 300px, 400px"
               className="h-76.75 w-62.5 md:h-100 md:w-75"
             />
+
+            <Float speed="spin" className="absolute -bottom-6 -right-6">
+              <Image
+                src="/Dots-rectangle.svg"
+                alt=""
+                aria-hidden
+                width={104}
+                height={56}
+              />
+            </Float>
+          </div>
+        </Reveal>
+
+        <div className="text-secondary flex flex-col gap-6 text-sm leading-6 font-light md:w-[60%]">
+          <Reveal direction="right" delay={0.1}>
+            <p>Hello, Divine Domokuma here.</p>
           </Reveal>
 
-          <div className="text-secondary flex flex-col gap-6 text-sm leading-6 font-light md:w-[60%]">
-            <Reveal direction="right" delay={0.1}>
-              <p>Hello, Divine Domokuma here.</p>
+          {ABOUT_ME_INFO.map((info, i) => (
+            <Reveal
+              direction="right"
+              key={i * 0.0034}
+              delay={(i + 1) / 10 + 0.005}
+            >
+              <p>{info}</p>
             </Reveal>
-
-            <Reveal direction="right" delay={0.15}>
-              <p>
-                I&apos;m a Frontend Developer with a strong focus on building modern
-                web applications using JavaScript, TypeScript, React, Next.js, and
-                Node.js. I enjoy solving real-world problems through thoughtful
-                software design, creating applications that are responsive, scalable,
-                and easy to maintain.
-              </p>
-            </Reveal>
-
-            <Reveal direction="right" delay={0.2}>
-              <p>
-                Whether I&apos;m implementing a clean frontend interface, integrating
-                backend APIs, or working with databases, I care about writing code
-                that is both efficient and maintainable.
-              </p>
-            </Reveal>
-
-            <Reveal direction="right" delay={0.25}>
-              <p>
-                Over the past few years, I&apos;ve built projects ranging from
-                educational platforms and secure communication systems to portfolio
-                websites and productivity tools. Each project has strengthened my
-                understanding of software architecture, state management,
-                authentication, database design, and user experience.
-              </p>
-            </Reveal>
-
-            <Reveal direction="right" delay={0.3}>
-              <p>
-                I&apos;m constantly learning new technologies, refining my
-                engineering practices, and contributing to projects that challenge me
-                to grow as a developer.
-              </p>
-            </Reveal>
-          </div>
+          ))}
         </div>
+      </section>
+
+      <section className="w-full">
+        <SkillSection />
       </section>
     </PageTransition>
   );

@@ -7,7 +7,7 @@ export const NAV_LINKS = [
   { text: "home", path: "/" },
   { text: "works", path: "/works" },
   { text: "about-me", path: "/about-me" },
-  { text: "contact", path: "/contact" },
+  { text: "contact", path: "/#contact" },
 ];
 
 export const skills: P<Record<keyof ISkillRecord, ICardContext>> = {
@@ -35,7 +35,7 @@ export const projects: Array<ICardContext> = [
   {
     techs: ["Html", "CSS", "Javascript"],
     img: "/Bg.jpeg",
-    links: { github: "github.com", live: "live.com" },
+    links: { github: "https://www.github.com", live: "live.com" },
     textInfo: {
       title: "ChertNode",
       desc: "Minecraft Server boosting",
@@ -44,7 +44,7 @@ export const projects: Array<ICardContext> = [
   {
     techs: ["Html", "CSS", "Javascript"],
     img: "/Bg.jpeg",
-    links: { github: "github.com", live: "live.com" },
+    links: { github: "https://www.github.com", live: "live.com" },
     textInfo: {
       title: "ChertNode",
       desc: "Minecraft Server boosting",
@@ -53,7 +53,7 @@ export const projects: Array<ICardContext> = [
   {
     techs: ["React.js", "Tailwindcss", "Express.js"],
     img: "/Bg.jpeg",
-    links: { github: "github.com", live: "live.com" },
+    links: { github: "https://www.github.com", live: "live.com" },
     textInfo: {
       title: "ProjectX",
       desc: "Discord anti-craft analyzer",
@@ -82,4 +82,29 @@ export const CONTACT_INFO = [
     link: "https://wa.me/qr/CTYTPNFMS2BSP1",
     text: "Divine Domokuma",
   },
+];
+
+export const ABOUT_ME_INFO = [
+  `
+    I'm a Frontend Developer with a strong focus on building
+    modern web applications using JavaScript, TypeScript, React,
+    Next.js, and Node.js. 
+  `,
+  `
+    Solving real-world problems through
+    thoughtful software design and creating applications that are
+    responsive, scalable, and easy to maintain are what i pride myself in building.
+  `,
+  `
+    Whether I'm implementing a clean frontend interface,
+    integrating backend APIs, or working with databases, I care about
+    writing code that is both efficient and maintainable.
+  `,
+  `
+    Over the past few years, I've built projects ranging from
+    educational platforms and secure communication systems to
+    portfolio websites and productivity tools. Each project has
+    strengthened my understanding of software architecture, state
+    management, authentication, database design, and user experience.
+  `,
 ];

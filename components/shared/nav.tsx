@@ -32,12 +32,12 @@ const Nav = ({ onDropToggle, isDropDownOpen }: INav) => {
       aria-label="Main navigation"
     >
       <div
- className={cn(
-  "w-full md:w-5/6 rounded-xl transition-all duration-300 flex items-center justify-between px-5 border",
-  scrolled
-    ? "py-3 bg-background/80 backdrop-blur-md border-secondary/20 shadow-sm"
-    : "py-7 border-transparent"
-)}
+        className={cn(
+          "w-full md:w-5/6 rounded-4xl transition-all duration-300 flex items-center justify-between px-5 border",
+          scrolled
+            ? "py-4 bg-background/80 backdrop-blur-md border-secondary/20 shadow-sm"
+            : "py-7 border-transparent",
+        )}
       >
         <Logo />
 
@@ -52,10 +52,12 @@ const Nav = ({ onDropToggle, isDropDownOpen }: INav) => {
                 "text-sm font-medium text-secondary duration-200 hover:text-white",
                 {
                   "text-white": pathname === link.path,
-                }
+                },
               )}
             >
-              <span className="text-primary" aria-hidden>#</span>
+              <span className="text-primary" aria-hidden>
+                #
+              </span>
               {link.text}
             </Link>
           ))}
@@ -67,7 +69,10 @@ const Nav = ({ onDropToggle, isDropDownOpen }: INav) => {
           aria-expanded={isDropDownOpen}
           className="group p-2 rounded-md hover:bg-primary-opacity md:hidden"
         >
-          <Command className="w-5 h-5 text-white font-bold duration-150 group-hover:text-primary" aria-hidden />
+          <Command
+            className="w-5 h-5 text-white font-bold duration-150 group-hover:text-primary"
+            aria-hidden
+          />
         </button>
       </div>
     </motion.nav>
@@ -102,10 +107,12 @@ export const SideBar = ({ onDropToggle }: INav) => {
               "text-lg py-2 px-3 rounded-sm font-medium text-secondary duration-200 hover:text-white hover:bg-primary-opacity block",
               {
                 "text-white bg-primary-opacity": pathname === link.path,
-              }
+              },
             )}
           >
-            <span className="text-primary" aria-hidden>#</span>
+            <span className="text-primary" aria-hidden>
+              #
+            </span>
             {link.text}
           </Link>
         </motion.div>
