@@ -2,12 +2,16 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-import { projects } from "@/lib/constant";
+import type { IProjectCard } from "@/interfaces";
 import { Card, CardButton, CardImage, CardTools } from "../card";
 import { SectionHeader } from "../shared/utils";
 import { StaggerGroup, WaveStaggerItem } from "../animations/stagger";
 
-const Project = () => {
+interface ProjectSectionProps {
+  projects: IProjectCard[];
+}
+
+const Project = ({ projects }: ProjectSectionProps) => {
   return (
     <section className="w-full space-y-7 p-7">
       <header className="flex items-center justify-between gap-5">
@@ -31,7 +35,7 @@ const Project = () => {
       >
         {projects.map((project, i) => (
           <WaveStaggerItem
-            key={project.textInfo?.title}
+            key={project.id}
             index={i}
             directions={["left", "down", "right"]}
             className="mb-5 break-inside-avoid"

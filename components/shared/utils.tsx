@@ -3,7 +3,6 @@ import Image from "next/image";
 import { ReactNode, useRef, useState } from "react";
 import { AnimatePresence, motion, useInView } from "motion/react";
 
-import Footer from "./footer";
 import Nav, { SideBar } from "./nav";
 import { cn } from "@/lib/utils";
 import { SkipLink } from "./skip-link";
@@ -11,6 +10,7 @@ import { SkipLink } from "./skip-link";
 interface IProps {
   children: ReactNode;
   className?: string;
+  footer?: ReactNode;
 }
 
 interface SectionHeaderProps {
@@ -18,7 +18,7 @@ interface SectionHeaderProps {
   className?: string;
 }
 
-export const Wrapper = ({ children }: IProps) => {
+export const Wrapper = ({ children, footer }: IProps) => {
   const [isDropDownOpen, setIsDropDownOpen] = useState<boolean>(false);
 
   const onDropToggle = () => setIsDropDownOpen((prev) => !prev);
@@ -37,7 +37,7 @@ export const Wrapper = ({ children }: IProps) => {
         {children}
       </div>
 
-      <Footer />
+      {footer}
     </main>
   );
 };

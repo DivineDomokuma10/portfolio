@@ -4,14 +4,24 @@ import HeroSection from "@/components/sections/hero";
 import AboutSection from "@/components/sections/about";
 import SkillSection from "@/components/sections/skills";
 
-export default function Home() {
+import { getProjectCards } from "@/lib/data/projects";
+import { getSkillCategories } from "@/lib/data/skills";
+import { getSettings } from "@/lib/data/settings";
+
+export default async function Home() {
+  const [projects, categories, settings] = await Promise.all([
+    getProjectCards(),
+    getSkillCategories(),
+    getSettings(),
+  ]);
+
   return (
     <main className="w-full h-fit flex flex-col space-y-10 md:w-5/6">
       <HeroSection />
-      <AboutSection />
-      <SkillSection />
-      <Project />
-      <Contact />
+      <AboutSection paragraphs={settings.aboutParagraphs.slice(0, 2)} />
+      <SkillSection categories={categories} />
+      <Project projects={projects} />
+      <Contact contact={settings.contact} />
     </main>
   );
 }

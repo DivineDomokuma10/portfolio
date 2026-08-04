@@ -4,9 +4,12 @@ import { ArrowRight } from "lucide-react";
 
 import { SectionHeader } from "../shared/utils";
 import { Float } from "../animations/float";
-import { ABOUT_ME_INFO } from "@/lib/constant";
 
-const AboutSection = () => {
+interface AboutSectionProps {
+  paragraphs: string[];
+}
+
+const AboutSection = ({ paragraphs }: AboutSectionProps) => {
   return (
     <section className="grid-pattern flex w-full flex-col justify-center gap-10 p-7 md:flex-row-reverse md:items-center md:justify-between">
       <div className="w-full space-y-7 md:w-[45%]">
@@ -15,7 +18,7 @@ const AboutSection = () => {
         <div className="text-secondary flex flex-col gap-6 text-sm leading-6 font-light">
           <p>Hello, Divine Domokuma here.</p>
 
-          {ABOUT_ME_INFO.slice(0, 2).map((info, i) => (
+          {paragraphs.slice(0, 2).map((info, i) => (
             <p key={i * 0.0435}>{info}</p>
           ))}
         </div>

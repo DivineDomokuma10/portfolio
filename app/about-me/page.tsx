@@ -2,13 +2,14 @@ import Image from "next/image";
 import type { Metadata } from "next";
 
 import { siteConfig } from "@/lib/metadata";
+import { getSettings } from "@/lib/data/settings";
+import { getSkillCategories } from "@/lib/data/skills";
 
 import { Float } from "@/components/animations/float";
 import { PageHeader } from "@/components/shared/utils";
 import { Reveal } from "@/components/animations/reveal";
 import SkillSection from "@/components/sections/skills";
 import { PageTransition } from "@/components/shared/page-transition";
-import { ABOUT_ME_INFO } from "@/lib/constant";
 
 export const metadata: Metadata = {
   title: "About Me",
@@ -21,7 +22,12 @@ export const metadata: Metadata = {
   alternates: { canonical: `${siteConfig.url}/about-me` },
 };
 
-export default function AboutMePage() {
+export default async function AboutMePage() {
+  const [settings, categories] = await Promise.all([
+    getSettings(),
+    getSkillCategories(),
+  ]);
+
   return (
     <PageTransition className="w-full h-fit flex flex-col p-5 space-y-10 md:w-5/6">
       <PageHeader desc="A little bit about me" title="about-me" />
@@ -68,7 +74,7 @@ export default function AboutMePage() {
             <p>Hello, Divine Domokuma here.</p>
           </Reveal>
 
-          {ABOUT_ME_INFO.map((info, i) => (
+          {settings.aboutParagraphs.map((info, i) => (
             <Reveal
               direction="right"
               key={i * 0.0034}
@@ -81,7 +87,7 @@ export default function AboutMePage() {
       </section>
 
       <section className="w-full">
-        <SkillSection />
+        <SkillSection categories={categories} />
       </section>
     </PageTransition>
   );

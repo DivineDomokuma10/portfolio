@@ -4,6 +4,7 @@ import "./globals.css";
 import { jsonLd } from "@/lib/schema";
 import { siteConfig } from "@/lib/metadata";
 import { Wrapper } from "@/components/shared/utils";
+import Footer from "@/components/shared/footer";
 import { Analytics } from "@vercel/analytics/next";
 
 export const viewport: Viewport = {
@@ -108,7 +109,7 @@ export default function RootLayout({
       </head>
 
       <body className="bg-background grid-pattern max-w-screen min-h-dvh antialiased">
-        <Wrapper>{children}</Wrapper>
+        <Wrapper footer={<Footer />}>{children}</Wrapper>
       </body>
 
       <Analytics />

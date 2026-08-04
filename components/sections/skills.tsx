@@ -1,17 +1,19 @@
 "use client";
 import Image from "next/image";
 
-import { skills } from "@/lib/constant";
 import { capitalize } from "@/lib/utils";
+import type { ISkillCategory } from "@/interfaces";
 
 import { Card, CardTools } from "../card";
 import { Float } from "../animations/float";
 import { SectionHeader } from "../shared/utils";
 import { StaggerGroup, StaggerItem } from "../animations/stagger";
 
-const SkillSection = () => {
-  const mySkills = Object.keys(skills) as Array<keyof typeof skills>;
+interface SkillSectionProps {
+  categories: ISkillCategory[];
+}
 
+const SkillSection = ({ categories }: SkillSectionProps) => {
   return (
     <section className="flex w-full flex-col justify-center gap-10 p-7 md:flex-row md:items-center md:justify-between">
       <div className="w-full space-y-7 md:w-[50%]">
@@ -23,15 +25,20 @@ const SkillSection = () => {
           className="columns-2 md:columns-3"
           margin="-50px"
         >
-          {mySkills.map((skill, i) => (
+          {categories.map((category, i) => (
             <StaggerItem
-              key={skill}
+              key={category.id}
               index={i}
               className="mb-5 break-inside-avoid"
             >
-              <Card cardData={skills[skill]}>
+              <Card
+                cardData={{
+                  techs: category.techs,
+                  img: category.imageUrl ?? undefined,
+                }}
+              >
                 <header className="border-b border-b-secondary p-2 text-white transition-colors group-hover:border-b-primary">
-                  {capitalize(skill)}
+                  {capitalize(category.name)}
                 </header>
 
                 <CardTools />

@@ -2,6 +2,7 @@
 import { createContext, ReactNode, useContext } from "react";
 
 export interface ICardContext {
+  id?: string;
   img?: string;
   techs: Array<string>;
   links?: {

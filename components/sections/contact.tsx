@@ -1,7 +1,12 @@
 import { SectionHeader } from "../shared/utils";
-import { CONTACT_INFO } from "@/lib/constant";
+import { CONTACT_ICONS, type ContactIconName } from "@/lib/icons";
+import type { IContactLink } from "@/interfaces";
 
-const Contact = () => {
+interface ContactSectionProps {
+  contact: IContactLink[];
+}
+
+const Contact = ({ contact }: ContactSectionProps) => {
   return (
     <section
       id="contact"
@@ -30,19 +35,21 @@ const Contact = () => {
           </h1>
 
           <div className="flex flex-col space-y-3">
-            {CONTACT_INFO.map((info) => (
-              <a
-                key={info.link}
-                href={info.link}
-                target="_blank"
-                className="flex space-x-3 hover:text-accent transition-colors duration-300"
-              >
-                {info.icon && (
-                  <info.icon className="size-5 stroke-3 text-white" />
-                )}
-                <span className="text-sm text-secondary">{info.text}</span>
-              </a>
-            ))}
+            {contact.map((info) => {
+              const Icon = CONTACT_ICONS[info.icon as ContactIconName];
+
+              return (
+                <a
+                  key={info.link}
+                  href={info.link}
+                  target="_blank"
+                  className="flex space-x-3 hover:text-accent transition-colors duration-300"
+                >
+                  {Icon && <Icon className="size-5 stroke-3 text-white" />}
+                  <span className="text-sm text-secondary">{info.text}</span>
+                </a>
+              );
+            })}
           </div>
         </div>
       </aside>
