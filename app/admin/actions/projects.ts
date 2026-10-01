@@ -28,7 +28,11 @@ export async function createProjectAction(input: ProjectInput): Promise<ActionRe
   const parsed = projectSchema.safeParse(input);
   if (!parsed.success) return { ok: false, error: "Invalid input." };
 
-  await createProject(parsed.data);
+  try {
+    await createProject(parsed.data);
+  } catch (error) {
+    return { ok: false, error: error instanceof Error ? error.message : "Failed to create project." };
+  }
   revalidateContent();
   return { ok: true };
 }
@@ -43,7 +47,11 @@ export async function updateProjectAction(
   const parsed = projectSchema.safeParse(input);
   if (!parsed.success) return { ok: false, error: "Invalid input." };
 
-  await updateProject(id, parsed.data);
+  try {
+    await updateProject(id, parsed.data);
+  } catch (error) {
+    return { ok: false, error: error instanceof Error ? error.message : "Failed to update project." };
+  }
   revalidateContent();
   return { ok: true };
 }
@@ -52,7 +60,11 @@ export async function deleteProjectAction(id: string): Promise<ActionResult> {
   const session = await requireAdmin();
   if (!session) return { ok: false, error: "Unauthorized" };
 
-  await deleteProject(id);
+  try {
+    await deleteProject(id);
+  } catch (error) {
+    return { ok: false, error: error instanceof Error ? error.message : "Failed to delete project." };
+  }
   revalidateContent();
   return { ok: true };
 }

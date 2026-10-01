@@ -9,8 +9,8 @@ export const loginSchema = z.object({
 
 export const projectSchema = z.object({
   title: z.string().trim().min(1).max(120),
-  description: z.string().trim().max(500),
-  techs: z.array(z.string().trim().min(1)).max(30),
+  description: z.string().trim().min(1).max(500),
+  techs: z.array(z.string().trim().min(1)).min(1).max(30),
   imageUrl: optionalUrl,
   githubUrl: optionalUrl,
   liveUrl: optionalUrl,
@@ -20,13 +20,13 @@ export const projectSchema = z.object({
 
 export const skillSchema = z.object({
   name: z.string().trim().min(1).max(50),
-  techs: z.array(z.string().trim().min(1)).max(40),
+  techs: z.array(z.string().trim().min(1)).min(1).max(40),
   imageUrl: optionalUrl,
   sortOrder: z.number().int().min(0).optional(),
 });
 
 export const settingsSchema = z.object({
-  aboutParagraphs: z.array(z.string().trim()),
+  aboutParagraphs: z.array(z.string().trim().min(1)).min(1),
   contact: z.array(
     z.object({
       icon: z.string().min(1),

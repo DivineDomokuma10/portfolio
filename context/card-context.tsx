@@ -30,7 +30,7 @@ export const useCardContext = () => {
   const context = useContext(CardContext);
 
   if (!context) {
-    throw new Error("useCardContext mut be used inside a CardContextProvider");
+    throw new Error("useCardContext must be used inside a CardContextProvider");
   }
 
   return context;

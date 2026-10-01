@@ -24,9 +24,12 @@ export function LoginForm() {
 
   function onSubmit(values: LoginValues) {
     setError(null);
-    startTransition(async () => {
-      const result = await loginAction(values);
-      if (!result.ok) setError(result.error);
+    startTransition(() => {
+      void loginAction(values)
+        .then((result) => {
+          if (!result.ok) setError(result.error);
+        })
+        .catch(() => setError("Something went wrong. Please try again."));
     });
   }
 

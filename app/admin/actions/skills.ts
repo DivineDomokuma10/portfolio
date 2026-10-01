@@ -20,7 +20,11 @@ export async function createSkillCategoryAction(
   const parsed = skillSchema.safeParse(input);
   if (!parsed.success) return { ok: false, error: "Invalid input." };
 
-  await createSkillCategory(parsed.data);
+  try {
+    await createSkillCategory(parsed.data);
+  } catch (error) {
+    return { ok: false, error: error instanceof Error ? error.message : "Failed to create skill." };
+  }
   revalidateContent();
   return { ok: true };
 }
@@ -35,7 +39,11 @@ export async function updateSkillCategoryAction(
   const parsed = skillSchema.safeParse(input);
   if (!parsed.success) return { ok: false, error: "Invalid input." };
 
-  await updateSkillCategory(id, parsed.data);
+  try {
+    await updateSkillCategory(id, parsed.data);
+  } catch (error) {
+    return { ok: false, error: error instanceof Error ? error.message : "Failed to update skill." };
+  }
   revalidateContent();
   return { ok: true };
 }
@@ -44,7 +52,11 @@ export async function deleteSkillCategoryAction(id: string): Promise<ActionResul
   const session = await requireAdmin();
   if (!session) return { ok: false, error: "Unauthorized" };
 
-  await deleteSkillCategory(id);
+  try {
+    await deleteSkillCategory(id);
+  } catch (error) {
+    return { ok: false, error: error instanceof Error ? error.message : "Failed to delete skill." };
+  }
   revalidateContent();
   return { ok: true };
 }

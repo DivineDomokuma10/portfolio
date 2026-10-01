@@ -6,6 +6,22 @@ import type { SettingsInput } from "@/lib/validators";
 
 const DEFAULT_SETTINGS: ISettings = { aboutParagraphs: [], contact: [] };
 
+function toStringArray(value: unknown): string[] {
+  return Array.isArray(value) ? value.filter((v): v is string => typeof v === "string") : [];
+}
+
+function toContactLinks(value: unknown): IContactLink[] {
+  if (!Array.isArray(value)) return [];
+  return value.filter(
+    (v): v is IContactLink =>
+      typeof v === "object" &&
+      v !== null &&
+      typeof (v as IContactLink).icon === "string" &&
+      typeof (v as IContactLink).link === "string" &&
+      typeof (v as IContactLink).text === "string",
+  );
+}
+
 export const getSettings = cache(async (): Promise<ISettings> => {
   const { data, error } = await db()
     .from("settings")
@@ -17,8 +33,8 @@ export const getSettings = cache(async (): Promise<ISettings> => {
   if (!data) return DEFAULT_SETTINGS;
 
   return {
-    aboutParagraphs: data.about_paragraphs as unknown as string[],
-    contact: data.contact as unknown as IContactLink[],
+    aboutParagraphs: toStringArray(data.about_paragraphs),
+    contact: toContactLinks(data.contact),
   };
 });
 

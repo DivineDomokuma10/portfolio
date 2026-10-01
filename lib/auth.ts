@@ -4,7 +4,7 @@ import { SignJWT, jwtVerify } from "jose";
 import { cookies } from "next/headers";
 
 export const SESSION_COOKIE = "admin_session";
-const TOKEN_TTL = "2d";
+const TOKEN_TTL = "7d";
 
 export interface Session {
   email: string;
@@ -17,8 +17,9 @@ function secretKey(): Uint8Array {
 }
 
 function scryptHash(value: string): Buffer {
-  const salt = process.env.AUTH_SECRET ?? "salt";
-  return scryptSync(value, salt, 64);
+  const secret = process.env.AUTH_SECRET;
+  if (!secret) throw new Error("Missing AUTH_SECRET");
+  return scryptSync(value, secret, 64);
 }
 
 function safeEqual(a: Buffer, b: Buffer): boolean {
@@ -48,6 +49,7 @@ async function verifySession(token: string): Promise<Session | null> {
     const { payload } = await jwtVerify(token, secretKey());
 
     if (typeof payload.email !== "string") return null;
+    if (payload.email !== process.env.ADMIN_EMAIL) return null;
 
     return { email: payload.email };
   } catch {
@@ -82,4 +84,5 @@ export async function createSession(): Promise<void> {
 export async function destroySession(): Promise<void> {
   const store = await cookies();
   store.delete(SESSION_COOKIE);
+  store.set(SESSION_COOKIE, "", { path: "/", maxAge: 0 });
 }

@@ -14,6 +14,15 @@ interface SkillSectionProps {
 }
 
 const SkillSection = ({ categories }: SkillSectionProps) => {
+  if (categories.length === 0) {
+    return (
+      <section className="flex w-full flex-col justify-center gap-10 p-7">
+        <SectionHeader title="skill" />
+        <p className="text-secondary text-sm">Nothing here yet.</p>
+      </section>
+    );
+  }
+
   return (
     <section className="flex w-full flex-col justify-center gap-10 p-7 md:flex-row md:items-center md:justify-between">
       <div className="w-full space-y-7 md:w-[50%]">
@@ -59,29 +68,29 @@ const SkillIllustration = () => {
   return (
     <div className="relative h-72 w-full md:w-11/12">
       <Float speed="normal" className="absolute top-10 left-0">
-        <Image src="/Dots.svg" alt="" aria-hidden width={63} height={63} />
+        <Image src="/Dots.svg" alt="" aria-hidden="true" width={63} height={63} />
       </Float>
 
       <Float speed="slow" className="absolute top-0 right-7">
-        <Image src="/Rectangle.svg" alt="" aria-hidden width={84} height={84} />
+        <Image src="/Rectangle.svg" alt="" aria-hidden="true" width={84} height={84} />
       </Float>
 
       <Float speed="reverse" className="absolute bottom-0 left-2 md:left-5">
         <Image
           src="/logo-outline2.png"
           alt=""
-          aria-hidden
+          aria-hidden="true"
           width={104}
           height={56}
         />
       </Float>
 
       <Float speed="spin" className="absolute top-1/2 left-2/5">
-        <Image src="/Dots.svg" alt="" aria-hidden width={63} height={63} />
+        <Image src="/Dots.svg" alt="" aria-hidden="true" width={63} height={63} />
       </Float>
 
       <Float speed="normal" className="absolute right-0 bottom-10">
-        <Image src="/Rectangle.svg" alt="" aria-hidden width={52} height={52} />
+        <Image src="/Rectangle.svg" alt="" aria-hidden="true" width={52} height={52} />
       </Float>
     </div>
   );

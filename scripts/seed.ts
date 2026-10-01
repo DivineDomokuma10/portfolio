@@ -25,7 +25,7 @@ async function ensureBucket(): Promise<void> {
 }
 
 async function seedProjects(): Promise<void> {
-  const projects = [
+  const projects: Database["public"]["Tables"]["projects"]["Insert"][] = [
     {
       id: "6b1a5b90-0000-4000-8000-000000000001",
       title: "ChertNode",
@@ -33,18 +33,18 @@ async function seedProjects(): Promise<void> {
       techs: ["Html", "CSS", "Javascript"],
       image_url: null,
       github_url: "https://www.github.com",
-      live_url: "live.com",
+      live_url: "https://live.com",
       category: "web",
       sort_order: 0,
     },
     {
       id: "6b1a5b90-0000-4000-8000-000000000002",
-      title: "ChertNode",
-      description: "Minecraft Server boosting",
+      title: "ChertNode API",
+      description: "Minecraft Server boosting API",
       techs: ["Html", "CSS", "Javascript"],
       image_url: null,
       github_url: "https://www.github.com",
-      live_url: "live.com",
+      live_url: "https://live.com",
       category: "web",
       sort_order: 1,
     },
@@ -55,7 +55,7 @@ async function seedProjects(): Promise<void> {
       techs: ["React.js", "Tailwindcss", "Express.js"],
       image_url: null,
       github_url: "https://www.github.com",
-      live_url: "live.com",
+      live_url: "https://live.com",
       category: "web",
       sort_order: 2,
     },

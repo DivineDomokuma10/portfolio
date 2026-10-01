@@ -19,7 +19,7 @@ const AboutSection = ({ paragraphs }: AboutSectionProps) => {
           <p>Hello, Divine Domokuma here.</p>
 
           {paragraphs.slice(0, 2).map((info, i) => (
-            <p key={i * 0.0435}>{info}</p>
+            <p key={`about-para-${i}`}>{info}</p>
           ))}
         </div>
 
@@ -46,7 +46,7 @@ const AboutIllustration = () => {
         speed="reverse"
         className="absolute top-1/4 -left-3 z-10 h-16 w-16 md:h-21 md:w-21"
       >
-        <Image src="/Dots.svg" alt="" aria-hidden width={84} height={84} />
+        <Image src="/Dots.svg" alt="" aria-hidden="true" width={84} height={84} />
       </Float>
 
       <Image
@@ -61,7 +61,7 @@ const AboutIllustration = () => {
         <Image
           src="/Dots-rectangle.svg"
           alt=""
-          aria-hidden
+          aria-hidden="true"
           width={104}
           height={56}
         />

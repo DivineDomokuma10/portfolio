@@ -12,6 +12,19 @@ interface ProjectSectionProps {
 }
 
 const Project = ({ projects }: ProjectSectionProps) => {
+  if (projects.length === 0) {
+    return (
+      <section className="w-full space-y-7 p-7">
+        <header className="flex items-center justify-between gap-5">
+          <div className="w-full md:w-1/2">
+            <SectionHeader title="projects" />
+          </div>
+        </header>
+        <p className="text-secondary text-sm">Nothing here yet.</p>
+      </section>
+    );
+  }
+
   return (
     <section className="w-full space-y-7 p-7">
       <header className="flex items-center justify-between gap-5">

@@ -19,7 +19,7 @@ export async function loginAction(input: {
   }
 
   await createSession();
-  redirect("/admin");
+  redirect("/admin/projects");
 }
 
 export async function logoutAction(): Promise<void> {

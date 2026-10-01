@@ -55,7 +55,7 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9, duration: 0.5, ease: "easeOut" }}
         >
-          <MagneticButton href="/contact">Get in Touch</MagneticButton>
+          <MagneticButton href="/#contact">Get in Touch</MagneticButton>
 
           <Link
             href="/works"

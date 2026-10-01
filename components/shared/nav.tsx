@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { Command } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { motion } from "motion/react";
 import { useEffect, useState } from "react";
@@ -55,7 +55,7 @@ const Nav = ({ onDropToggle, isDropDownOpen }: INav) => {
                 },
               )}
             >
-              <span className="text-primary" aria-hidden>
+              <span className="text-primary" aria-hidden="true">
                 #
               </span>
               {link.text}
@@ -69,10 +69,18 @@ const Nav = ({ onDropToggle, isDropDownOpen }: INav) => {
           aria-expanded={isDropDownOpen}
           className="group p-2 rounded-md hover:bg-primary-opacity md:hidden"
         >
-          <Command
-            className="w-5 h-5 text-white font-bold duration-150 group-hover:text-primary"
-            aria-hidden
-          />
+          <span className="sr-only">{isDropDownOpen ? "Close menu" : "Open menu"}</span>
+          {isDropDownOpen ? (
+            <X
+              className="w-5 h-5 text-white font-bold duration-150 group-hover:text-primary"
+              aria-hidden="true"
+            />
+          ) : (
+            <Menu
+              className="w-5 h-5 text-white font-bold duration-150 group-hover:text-primary"
+              aria-hidden="true"
+            />
+          )}
         </button>
       </div>
     </motion.nav>
@@ -83,13 +91,12 @@ export const SideBar = ({ onDropToggle }: INav) => {
   const pathname = usePathname();
 
   return (
-    <motion.div
+    <motion.nav
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ type: "spring", damping: 25, stiffness: 300 }}
       className="fixed top-28 left-1/2 -translate-x-1/2 w-[calc(100%-2.5rem)] md:w-5/6 md:hidden rounded-xl bg-background/80 backdrop-blur-md border border-secondary/20 shadow-sm flex flex-col p-5 space-y-3 origin-top z-30"
-      role="navigation"
       aria-label="Mobile navigation"
     >
       {NAV_LINKS.map((link, i) => (
@@ -110,14 +117,14 @@ export const SideBar = ({ onDropToggle }: INav) => {
               },
             )}
           >
-            <span className="text-primary" aria-hidden>
+            <span className="text-primary" aria-hidden="true">
               #
             </span>
             {link.text}
           </Link>
         </motion.div>
       ))}
-    </motion.div>
+    </motion.nav>
   );
 };
 

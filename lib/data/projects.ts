@@ -1,3 +1,5 @@
+import { cache } from "react";
+
 import { db } from "@/lib/supabase";
 import type { Database } from "@/supabase/database.types";
 import type { IProject, IProjectCard } from "@/interfaces";
@@ -5,16 +7,20 @@ import type { ProjectInput } from "@/lib/validators";
 
 type ProjectRow = Database["public"]["Tables"]["projects"]["Row"];
 
+function toStringArray(value: unknown): string[] {
+  return Array.isArray(value) ? value.filter((v): v is string => typeof v === "string") : [];
+}
+
 function toProject(row: ProjectRow): IProject {
   return {
     id: row.id,
     title: row.title,
     description: row.description,
-    techs: row.techs as string[],
+    techs: toStringArray(row.techs),
     imageUrl: row.image_url,
     githubUrl: row.github_url,
     liveUrl: row.live_url,
-    category: row.category as IProject["category"],
+    category: row.category === "mobile" ? "mobile" : "web",
     sortOrder: row.sort_order,
     createdAt: row.created_at,
     updatedAt: row.updated_at,
@@ -34,9 +40,9 @@ function toCard(project: IProject): IProjectCard {
   };
 }
 
-export async function getProjects(
+export const getProjects = cache(async (
   category?: "web" | "mobile",
-): Promise<IProject[]> {
+): Promise<IProject[]> => {
   let query = db()
     .from("projects")
     .select("*")
@@ -47,13 +53,13 @@ export async function getProjects(
   const { data, error } = await query;
   if (error) throw new Error(error.message);
   return (data ?? []).map(toProject);
-}
+});
 
-export async function getProjectCards(
+export const getProjectCards = cache(async (
   category?: "web" | "mobile",
-): Promise<IProjectCard[]> {
+): Promise<IProjectCard[]> => {
   return (await getProjects(category)).map(toCard);
-}
+});
 
 export async function createProject(input: ProjectInput): Promise<void> {
   const { error } = await db().from("projects").insert({

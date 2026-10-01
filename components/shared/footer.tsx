@@ -7,7 +7,7 @@ const Footer = async () => {
 
   return (
     <footer className="mt-16 w-full flex flex-col items-center justify-center bg-background px-7 py-10 border-t border-t-secondary" role="contentinfo">
-      <main className="w-full flex flex-col space-y-10 md:w-5/6">
+      <div className="w-full flex flex-col space-y-10 md:w-5/6">
         <section className="w-full flex flex-col space-y-7 md:space-y-0 md:flex-row justify-between">
           <div className="flex flex-col space-y-5 md:w-1/3">
             <Logo />
@@ -24,14 +24,15 @@ const Footer = async () => {
             </h3>
 
             <div className="flex space-x-7 items-center">
-              {contact.map((info) => {
+              {contact.map((info, i) => {
                 const Icon = CONTACT_ICONS[info.icon as ContactIconName];
 
                 return (
                   <a
-                    key={info.link}
+                    key={`${info.icon}-${info.text}-${i}`}
                     href={info.link}
-                    target="_blank"
+                    target={info.link.startsWith("http") ? "_blank" : undefined}
+                    rel={info.link.startsWith("http") ? "noreferrer" : undefined}
                     className="flex space-x-5 transition-colors duration-300"
                     aria-label={info.text}
                   >
@@ -48,7 +49,7 @@ const Footer = async () => {
         <p className="text-xs text-secondary text-center">
           © 2026 Divine Domokuma. Built with Next.js, TypeScript, Tailwind CSS.
         </p>
-      </main>
+      </div>
     </footer>
   );
 };

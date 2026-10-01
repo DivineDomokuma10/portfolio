@@ -24,7 +24,7 @@ export const Wrapper = ({ children, footer }: IProps) => {
   const onDropToggle = () => setIsDropDownOpen((prev) => !prev);
 
   return (
-    <main className="w-full h-full flex flex-col items-center">
+    <div className="w-full h-full flex flex-col items-center">
       <SkipLink />
 
       <Nav {...{ onDropToggle, isDropDownOpen }} />
@@ -38,18 +38,18 @@ export const Wrapper = ({ children, footer }: IProps) => {
       </div>
 
       {footer}
-    </main>
+    </div>
   );
 };
 
 export const Logo = () => {
   return (
-    <header className="flex items-center space-x-3">
+    <div className="flex items-center space-x-3">
       <Image alt="logo" src="/logo.svg" width={25} height={25} />
-      <h1 className="text-primary font-bold font-fira md:text-lg">
+      <span className="text-primary font-bold font-fira md:text-lg">
         Divine Domokuma
-      </h1>
-    </header>
+      </span>
+    </div>
   );
 };
 
@@ -65,7 +65,7 @@ export const SectionHeader = ({ title, className }: SectionHeaderProps) => {
         className,
       )}
     >
-      <motion.h1
+      <motion.h2
         className="font-medium text-white text-2xl md:text-3xl whitespace-nowrap"
         initial={{ x: -30, opacity: 0 }}
         animate={isInView ? { x: 0, opacity: 1 } : { x: -30, opacity: 0 }}
@@ -79,7 +79,7 @@ export const SectionHeader = ({ title, className }: SectionHeaderProps) => {
           #
         </motion.span>
         {title}
-      </motion.h1>
+      </motion.h2>
 
       <motion.div
         className="flex-1 h-0.5 bg-primary origin-left"

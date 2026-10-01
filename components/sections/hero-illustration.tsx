@@ -4,17 +4,30 @@ import { useRef, useState } from "react";
 
 export function HeroIllustration() {
   const ref = useRef<HTMLDivElement>(null);
+  const rafRef = useRef<number>(0);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!ref.current) return;
+    if (rafRef.current) return;
     const rect = ref.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left - rect.width / 2) / rect.width;
-    const y = (e.clientY - rect.top - rect.height / 2) / rect.height;
-    setOffset({ x, y });
+    const clientX = e.clientX;
+    const clientY = e.clientY;
+    rafRef.current = requestAnimationFrame(() => {
+      rafRef.current = 0;
+      const x = (clientX - rect.left - rect.width / 2) / rect.width;
+      const y = (clientY - rect.top - rect.height / 2) / rect.height;
+      setOffset({ x, y });
+    });
   };
 
-  const handleMouseLeave = () => setOffset({ x: 0, y: 0 });
+  const handleMouseLeave = () => {
+    if (rafRef.current) {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = 0;
+    }
+    setOffset({ x: 0, y: 0 });
+  };
 
   return (
     <div
@@ -26,7 +39,7 @@ export function HeroIllustration() {
       <Image
         src="/logo-outline2.png"
         alt=""
-        aria-hidden
+        aria-hidden="true"
         width={155}
         height={155}
         loading="lazy"
@@ -52,7 +65,7 @@ export function HeroIllustration() {
       <Image
         src="/Dots.svg"
         alt=""
-        aria-hidden
+        aria-hidden="true"
         width={84}
         height={84}
         loading="lazy"

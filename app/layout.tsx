@@ -6,6 +6,14 @@ import { siteConfig } from "@/lib/metadata";
 import { Wrapper } from "@/components/shared/utils";
 import Footer from "@/components/shared/footer";
 import { Analytics } from "@vercel/analytics/next";
+import { Fira_Code as firaCode } from "next/font/google";
+
+const firaCodeFont = firaCode({
+  subsets: ["latin"],
+  variable: "--font-fira-code",
+  display: "swap",
+  weight: ["300", "400", "500", "600", "700"],
+});
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -91,15 +99,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={firaCodeFont.variable}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

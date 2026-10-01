@@ -38,7 +38,7 @@ const ProjectGrid = ({ projects }: ProjectGridProps) => {
       {projects.map((project, i) => (
         <StaggerItem
           key={project.id}
-          index={i * 0.2233}
+          index={i}
           className="mb-5 break-inside-avoid"
         >
           <Card cardData={project} className="mb-5 break-inside-avoid">

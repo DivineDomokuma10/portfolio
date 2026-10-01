@@ -16,7 +16,11 @@ export async function updateSettingsAction(
   const parsed = settingsSchema.safeParse(input);
   if (!parsed.success) return { ok: false, error: "Invalid input." };
 
-  await updateSettings(parsed.data);
+  try {
+    await updateSettings(parsed.data);
+  } catch (error) {
+    return { ok: false, error: error instanceof Error ? error.message : "Failed to save settings." };
+  }
   revalidateContent();
   return { ok: true };
 }

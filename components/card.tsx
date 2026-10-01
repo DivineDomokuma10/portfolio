@@ -67,7 +67,7 @@ export const CardImage = ({ className }: Props) => {
             alt={textInfo?.title ?? "Project screenshot"}
             src={img}
             loading="lazy"
-            className="w-full h-full top-0 absolute object-fill transition-all duration-200 hover:-rotate-45 hover:scale-200"
+            className="w-full h-full top-0 absolute object-cover transition-transform duration-200 group-hover:scale-105"
           />
         </div>
       ) : (
@@ -83,14 +83,36 @@ export const CardButton = ({
 }: { variant: TCardBtnVariant } & Props) => {
   const { links } = useCardContext();
 
-  const link = links?.[variant as keyof typeof links] || "/";
+  const link = links?.[variant as keyof typeof links];
+  const isAvailable = Boolean(link && link !== "/");
 
-  const label = `${capitalize(variant)} link${link !== "/" ? "" : " (unavailable)"}`;
+  const label = `${capitalize(variant)} link${isAvailable ? "" : " (unavailable)"}`;
+
+  if (!isAvailable) {
+    return (
+      <span
+        aria-disabled="true"
+        aria-label={label}
+        className={cn(
+          "py-2 px-3 flex items-center space-x-3 border text-xs text-secondary",
+          className,
+          {
+            "border-primary": variant === "live",
+            "border-secondary": variant === "github",
+          },
+        )}
+      >
+        <span>{capitalize(variant)}</span>
+        {variant === "live" ? <Link size={15} /> : <Code size={15} />}
+      </span>
+    );
+  }
 
   return (
     <a
       href={link}
       target="_blank"
+      rel="noreferrer"
       aria-label={label}
       className={cn(
         "py-2 px-3 flex items-center space-x-3 border text-xs text-white",
@@ -101,7 +123,7 @@ export const CardButton = ({
         },
       )}
     >
-      <p>{capitalize(variant)}</p>
+      <span>{capitalize(variant)}</span>
       {variant === "live" ? <Link size={15} /> : <Code size={15} />}
     </a>
   );

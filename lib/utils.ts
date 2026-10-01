@@ -6,11 +6,10 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const capitalize = (text: string): string => {
-  if (text) {
-    return text.replace(text[0], text[0].toUpperCase());
-  } else {
-    return " ";
-  }
+  if (!text) return " ";
+  const first = text[0];
+  if (!first) return " ";
+  return text.replace(first, first.toUpperCase());
 };
 
 export const toSentenceCase = (value: string) => {

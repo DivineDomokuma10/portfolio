@@ -16,9 +16,9 @@ const Contact = ({ contact }: ContactSectionProps) => {
         <SectionHeader title="contact" />
 
         <div className="space-y-3">
-          <h1 className="text-primary text-base font-semibold">
+          <h2 className="text-primary text-base font-semibold">
             Let&apos;s Build Something Together
-          </h1>
+          </h2>
 
           <p className="text-secondary text-sm leading-6 font-light flex flex-col space-y-6">
             Whether you have a project in mind, an freelance opportunity, or
@@ -30,26 +30,31 @@ const Contact = ({ contact }: ContactSectionProps) => {
 
       <aside className="w-full flex items-center justify-center space-y-3 md:w-[55%]">
         <div className="w-full space-y-3 border-secondary border p-5 md:w-fit">
-          <h1 className="text-white text-base font-semibold">
+          <h2 className="text-white text-base font-semibold">
             Message me here
-          </h1>
+          </h2>
 
           <div className="flex flex-col space-y-3">
-            {contact.map((info) => {
-              const Icon = CONTACT_ICONS[info.icon as ContactIconName];
+            {contact.length === 0 ? (
+              <p className="text-sm text-secondary">Contact info coming soon.</p>
+            ) : (
+              contact.map((info, i) => {
+                const Icon = CONTACT_ICONS[info.icon as ContactIconName];
 
-              return (
-                <a
-                  key={info.link}
-                  href={info.link}
-                  target="_blank"
+                return (
+                  <a
+                    key={`${info.icon}-${info.text}-${i}`}
+                    href={info.link}
+                    target={info.link.startsWith("http") ? "_blank" : undefined}
+                    rel={info.link.startsWith("http") ? "noreferrer" : undefined}
                   className="flex space-x-3 hover:text-accent transition-colors duration-300"
                 >
                   {Icon && <Icon className="size-5 stroke-3 text-white" />}
                   <span className="text-sm text-secondary">{info.text}</span>
                 </a>
-              );
-            })}
+                );
+              })
+            )}
           </div>
         </div>
       </aside>

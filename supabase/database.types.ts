@@ -18,7 +18,7 @@ export interface Database {
           image_url: string | null;
           github_url: string | null;
           live_url: string | null;
-          category: string;
+          category: "web" | "mobile";
           sort_order: number;
           created_at: string;
           updated_at: string;
@@ -31,7 +31,7 @@ export interface Database {
           image_url?: string | null;
           github_url?: string | null;
           live_url?: string | null;
-          category?: string;
+          category?: "web" | "mobile";
           sort_order?: number;
           updated_at?: string;
         };

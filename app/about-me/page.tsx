@@ -42,7 +42,7 @@ export default async function AboutMePage() {
               <Image
                 src="/Dots.svg"
                 alt=""
-                aria-hidden
+                aria-hidden="true"
                 width={84}
                 height={84}
               />
@@ -61,7 +61,7 @@ export default async function AboutMePage() {
               <Image
                 src="/Dots-rectangle.svg"
                 alt=""
-                aria-hidden
+                aria-hidden="true"
                 width={104}
                 height={56}
               />
@@ -77,7 +77,7 @@ export default async function AboutMePage() {
           {settings.aboutParagraphs.map((info, i) => (
             <Reveal
               direction="right"
-              key={i * 0.0034}
+              key={`about-para-${i}`}
               delay={(i + 1) / 10 + 0.005}
             >
               <p>{info}</p>
