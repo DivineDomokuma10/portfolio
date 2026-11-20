@@ -26,6 +26,7 @@ const Footer = async () => {
             <div className="flex space-x-7 items-center">
               {contact.map((info, i) => {
                 const Icon = CONTACT_ICONS[info.icon as ContactIconName];
+                const isPrimary = info.icon === "whatsapp";
 
                 return (
                   <a
@@ -34,10 +35,16 @@ const Footer = async () => {
                     target={info.link.startsWith("http") ? "_blank" : undefined}
                     rel={info.link.startsWith("http") ? "noreferrer" : undefined}
                     className="flex space-x-5 transition-colors duration-300"
-                    aria-label={info.text}
+                    aria-label={
+                      isPrimary ? "Start a chat on WhatsApp" : info.text
+                    }
                   >
                     {Icon && (
-                      <Icon className="size-5 stroke-3 text-secondary hover:text-primary" />
+                      <Icon
+                        className={`size-5 stroke-3 hover:text-primary ${
+                          isPrimary ? "text-primary" : "text-secondary"
+                        }`}
+                      />
                     )}
                   </a>
                 );

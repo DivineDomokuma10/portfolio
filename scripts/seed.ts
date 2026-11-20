@@ -128,8 +128,8 @@ async function seedSettings(): Promise<void> {
     },
     {
       icon: "whatsapp",
-      link: "https://wa.me/qr/CTYTPNFMS2BSP1",
-      text: "Divine Domokuma",
+      link: "https://wa.me/2349071214921",
+      text: "WhatsApp",
     },
   ];
 

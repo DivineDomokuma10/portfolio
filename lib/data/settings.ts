@@ -12,13 +12,25 @@ function toStringArray(value: unknown): string[] {
 
 function toContactLinks(value: unknown): IContactLink[] {
   if (!Array.isArray(value)) return [];
-  return value.filter(
+  const contact = value.filter(
     (v): v is IContactLink =>
       typeof v === "object" &&
       v !== null &&
       typeof (v as IContactLink).icon === "string" &&
       typeof (v as IContactLink).link === "string" &&
       typeof (v as IContactLink).text === "string",
+  );
+
+  const phoneNumber = contact
+    .find(({ icon, link }) => icon === "phone" && link.startsWith("tel:"))
+    ?.link.replace(/\D/g, "");
+
+  if (!phoneNumber) return contact;
+
+  return contact.map((item) =>
+    item.icon === "whatsapp" && item.link.includes("wa.me/qr/")
+      ? { ...item, link: `https://wa.me/${phoneNumber}` }
+      : item,
   );
 }
 

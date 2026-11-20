@@ -86,7 +86,12 @@ export const CardButton = ({
   const link = links?.[variant as keyof typeof links];
   const isAvailable = Boolean(link && link !== "/");
 
-  const label = `${capitalize(variant)} link${isAvailable ? "" : " (unavailable)"}`;
+  const unavailableText = variant === "live" ? "Demo on request" : capitalize(variant);
+  const label = isAvailable
+    ? `${capitalize(variant)} link`
+    : variant === "live"
+      ? "Demo available on request"
+      : `${capitalize(variant)} link unavailable`;
 
   if (!isAvailable) {
     return (
@@ -102,7 +107,7 @@ export const CardButton = ({
           },
         )}
       >
-        <span>{capitalize(variant)}</span>
+        <span>{unavailableText}</span>
         {variant === "live" ? <Link size={15} /> : <Code size={15} />}
       </span>
     );

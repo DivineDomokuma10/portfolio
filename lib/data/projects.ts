@@ -7,6 +7,10 @@ import type { ProjectInput } from "@/lib/validators";
 
 type ProjectRow = Database["public"]["Tables"]["projects"]["Row"];
 
+const UNAVAILABLE_LIVE_URLS = new Set([
+  "https://steganos-core-client.onrender.com",
+]);
+
 function toStringArray(value: unknown): string[] {
   return Array.isArray(value) ? value.filter((v): v is string => typeof v === "string") : [];
 }
@@ -19,7 +23,10 @@ function toProject(row: ProjectRow): IProject {
     techs: toStringArray(row.techs),
     imageUrl: row.image_url,
     githubUrl: row.github_url,
-    liveUrl: row.live_url,
+    liveUrl:
+      row.live_url && !UNAVAILABLE_LIVE_URLS.has(row.live_url)
+        ? row.live_url
+        : null,
     category: row.category === "mobile" ? "mobile" : "web",
     sortOrder: row.sort_order,
     createdAt: row.created_at,
